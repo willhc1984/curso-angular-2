@@ -1,0 +1,15 @@
+{
+  "categorias": [
+    {
+      "nome": "Restaurantes",
+      "descricao": "Lugares para alimentação",
+      "id": "pQdhtaA2XP4"
+    },
+    {
+      "nome": "Praias",
+      "descricao": "Praias para tomar banho",
+      "id": "ffEDdmnnrSs"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
