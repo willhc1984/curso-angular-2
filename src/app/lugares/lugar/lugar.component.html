@@ -7,7 +7,7 @@
             <label for="nome" class="block text-gray-600 font-medium mb-2">Nome</label>
             <input type="text" id="nome" name="nome" formControlName="nome" placeholder="Ex: praia do Sol..." 
                 class="w-full p-3 border border-gray-300 rounded shadow-sm focus:ring-blue-400" required />
-                <span class="text-red-500 text-sm">
+                <span class="text-red-500 text-sm" *ngIf="isCampoInvalido('nome')">
                     Campo obrigatório
                 </span>
         </div>
@@ -19,13 +19,16 @@
                 <option [value]="">Selecione uma categoria</option>
                 <option *ngFor="let categoria of categorias" [value]="categoria.nome">{{ categoria.nome }}</option>
             </select>
+            <span class="text-red-500 text-sm" *ngIf="isCampoInvalido('categoria')">
+                Campo obrigatório
+            </span>
         </div>
 
         <div class="mb-4">
             <label for="localizacao" class="block text-gray-600 font-medium mb-2">Localização</label>
             <input type="text" id="localizacao" name="localizacao" formControlName="localizacao" placeholder="Ex: São Paulo" 
                 class="w-full p-3 border border-gray-300 rounded shadow-sm focus:ring-blue-400" required />
-                <span class="text-red-500 text-sm">
+                <span class="text-red-500 text-sm" *ngIf="isCampoInvalido('localizacao')">
                     Campo obrigatório
                 </span>
         </div>
@@ -34,7 +37,7 @@
             <label for="urlFoto" class="block text-gray-600 font-medium mb-2">URL da foto</label>
             <input type="text" id="urlFoto" name="urlFoto" formControlName="urlFoto" placeholder="Ex: http://exemplo.com/foto.jpg" 
                 class="w-full p-3 border border-gray-300 rounded shadow-sm focus:ring-blue-400" required />
-                <span class="text-red-500 text-sm">
+                <span class="text-red-500 text-sm" *ngIf="isCampoInvalido('urlFoto')">
                     Campo obrigatório
                 </span>
         </div>
@@ -50,6 +53,9 @@
                 <option [value]="4">Muito Bom</option>
                 <option [value]="5">Excelente</option>
             </select>
+            <span class="text-red-500 text-sm" *ngIf="isCampoInvalido('avaliacao')">
+                Campo obrigatório
+            </span>
         </div>
 
         <button type="submit" class="w-full bg-blue-600 font-semibold p-3 rounded shadow hover:bg-blue-700">

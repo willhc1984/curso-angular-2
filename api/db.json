@@ -27,6 +27,22 @@
       "urlFoto": "http://fomezero.com/",
       "avaliacao": "4",
       "id": "tY1e22Nywzg"
+    },
+    {
+      "nome": "",
+      "categoria": "",
+      "localizacao": "",
+      "urlFoto": "",
+      "avaliacao": "",
+      "id": "nv-my9loWCw"
+    },
+    {
+      "nome": "maria jose bar",
+      "categoria": "Restaurantes",
+      "localizacao": "sorocaba",
+      "urlFoto": "http://",
+      "avaliacao": "5",
+      "id": "7mR2_pkOygs"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
