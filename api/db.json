@@ -11,5 +11,23 @@
       "id": "ffEDdmnnrSs"
     }
   ],
+  "lugares": [
+    {
+      "nome": "Bar 2 Zé",
+      "categoria": "Restaurantes",
+      "localizacao": "Rio de Janeiro",
+      "urlFoto": "http://2ze.com",
+      "avaliacao": "5",
+      "id": "sbCPP6w2G0M"
+    },
+    {
+      "nome": "Restaurante Fome Zero",
+      "categoria": "Restaurantes",
+      "localizacao": "São Paulo",
+      "urlFoto": "http://fomezero.com/",
+      "avaliacao": "4",
+      "id": "tY1e22Nywzg"
+    }
+  ],
   "$schema": "./node_modules/json-server/schema.json"
 }

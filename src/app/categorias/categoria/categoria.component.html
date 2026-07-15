@@ -4,7 +4,7 @@
 
     <form id="categoriaForm" [formGroup]="camposForm" (ngSubmit)="salvar()">
         <div class="mb-4">
-            <label class="block text-gray600 font-medium mb-2">Nome</label>
+            <label for="nome" class="block text-gray-600 font-medium mb-2">Nome</label>
             <input type="text" id="nome" name="nome" formControlName="nome" placeholder="Ex: restaurantes, praias, shoppings..." 
                 class="w-full p-3 border border-gray-300 rounded shadow-sm focus:ring-blue-400"
                 required />
@@ -13,7 +13,7 @@
                 </span>
         </div>
         <div class="mb-4">
-            <label class="block text-gray600 font-medium mb-2">Descrição</label>
+            <label for="descricao" class="block text-gray-600 font-medium mb-2">Descrição</label>
             <textarea rows="4"
                 id="descricao" name="descricao" formControlName="descricao" placeholder="Ex: restaurantes, praias, shoppings..." 
                 class="w-full p-3 border border-gray-300 rounded shadow-sm focus:outline-none focus:ring-blue-400"
