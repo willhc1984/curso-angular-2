@@ -5,6 +5,16 @@ const routes: Routes = [
   {
     path: 'paginas',
     loadChildren: () => import('./template/template.module').then(m => m.TemplateModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+  },
+  {
+
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
   }
 ];
 
