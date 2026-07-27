@@ -13,6 +13,11 @@ const routes: Routes = [
     path: 'consulta',
     component: ConsultaComponent,
     pathMatch: 'full'
+  },
+  {
+    path: 'editar/:id',
+    component: CadastroComponent,
+    pathMatch: 'full'
   }
 ];
 

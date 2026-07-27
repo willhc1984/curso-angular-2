@@ -4,6 +4,8 @@ import { Categoria } from '../../categorias/categoria';
 import { CategoriaService } from '../../categorias/categoria.service';
 import { LugarService } from '../lugar.service';
 import { AlertaService } from '../../alerta.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Lugar } from '../lugar';
 
 @Component({
   selector: 'app-lugar',
@@ -16,24 +18,32 @@ export class CadastroComponent implements OnInit{
 
   camposForm: FormGroup;
   categorias: Categoria[] = [];
-
-  ngOnInit(): void {
-    this.categoriaService.obterTodas().subscribe({
-      next: (listaCategorias) => {
-        console.log(listaCategorias);
-        this.categorias = listaCategorias
-      }      
-    })
-  }
+  id?: string;
   
-  constructor(private categoriaService: CategoriaService, private lugarService: LugarService, 
-              private alerta: AlertaService){
+  constructor(private categoriaService: CategoriaService, private lugarService: LugarService,
+              private alerta: AlertaService, private route: ActivatedRoute, private router: Router){
     this.camposForm = new FormGroup({
       nome: new FormControl('', Validators.required),
       categoria: new FormControl('', Validators.required),
       localizacao: new FormControl('', Validators.required),
       urlFoto: new FormControl('', Validators.required),
       avaliacao: new FormControl('', Validators.required)
+    })
+  }
+
+  ngOnInit(): void {
+    this.id = this.route.snapshot.paramMap.get('id') ?? undefined;
+
+    if(this.id){
+      this.carregarLugarId(this.id);
+      console.log('ID: ', this.id);
+    }
+
+    this.categoriaService.obterTodas().subscribe({
+      next: (listaCategorias) => {
+        console.log(this.id);
+        this.categorias = listaCategorias
+      }      
     })
   }
 
@@ -50,6 +60,41 @@ export class CadastroComponent implements OnInit{
           error: erro => console.log('Ocorreu um erro: ', erro)
         });
     }
+  }
+
+  atualizar() : void {
+    if(this.camposForm.invalid || !this.id){
+      return;
+    } 
+
+    const lugar: Lugar = {
+      id: this.id,
+      ...this.camposForm.value
+    };
+
+    this.lugarService.atualizar(lugar).subscribe({
+      next: () => {
+        this.alerta.sucesso('Lugar atualizado!');
+        this.router.navigate(['/paginas/lugares/consulta'])
+      },
+      error: () => {
+        this.alerta.erro('Erro ao atualizar.')
+      }
+    });
+  }
+
+  carregarLugarId(id: string) : void {
+    this.lugarService.obterPorId(id).subscribe({
+      next: lugar => {
+        this.camposForm.patchValue({
+          nome: lugar.nome,
+          categoria: lugar.categoria,
+          localizacao: lugar.localizacao,
+          urlFoto: lugar.urlFoto,
+          avaliacao: lugar.avaliacao
+        })
+      }
+    });
   }
 
   isCampoInvalido(nomeCampo: string) : boolean {

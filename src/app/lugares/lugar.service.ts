@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Lugar } from './lugar';
 import { environment } from '../../../api/environment';
@@ -24,6 +24,14 @@ export class LugarService {
 
   excluir(id: string) : Observable<void>{
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+
+  obterPorId(id: string) {
+    return this.http.get<Lugar>(`${this.apiUrl}/${id}`);
+  }
+
+  atualizar(lugar : Lugar) {
+    return this.http.put<Lugar>(`${this.apiUrl}/${lugar.id}`, lugar);
   }
 
 }

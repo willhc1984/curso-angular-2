@@ -31,7 +31,7 @@
                     <td class="px-6 py-4 max-w-xs truncate">{{ lugar.localizacao }}</td>                    
                     <td class="px-6 py-4">{{ lugar.avaliacao }}</td>
                     <td class="px-6 py-4 text-center">
-                    <button 
+                    <button [routerLink]="['/paginas/lugares/editar', lugar.id]"
                         class="mr-2 rounded bg-blue-600 px-3 py-1 text-sm font-semibold text-white hover:bg-blue-700">
                         Editar
                     </button>

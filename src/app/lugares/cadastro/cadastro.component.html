@@ -58,8 +58,9 @@
             </span>
         </div>
 
-        <button type="submit" class="w-full bg-blue-600 font-semibold p-3 rounded shadow hover:bg-blue-700">
-            Cadastrar
+        <button (click)="id ? atualizar() : salvar()"
+            type="button" class="w-full bg-blue-600 font-semibold p-3 rounded shadow hover:bg-blue-700">
+            {{ id ? 'Atualizar' : 'Cadastrar' }}
         </button>
     </form>
 </div>
