@@ -118,8 +118,26 @@
       "nome": "Joana",
       "email": "joana@hotmail.com",
       "senha": "123456"
+    },
+    {
+      "nome": "william henrique campos",
+      "email": "will-hc-1984@hotmail.com.br",
+      "senha": "123",
+      "id": "0gRzsHZ"
+    },
+    {
+      "nome": "jose maria ",
+      "email": "josemaria@hotmail.com",
+      "senha": "josemaria",
+      "senha2": "josemaria",
+      "id": "rCD9WAV"
+    },
+    {
+      "nome": "maria jose silva",
+      "email": "maria@jose.com",
+      "senha": "123456",
+      "id": "CPO4UOa"
     }
   ],
-  
   "$schema": "./node_modules/json-server/schema.json"
 }

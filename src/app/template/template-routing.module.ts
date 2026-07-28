@@ -17,6 +17,11 @@ const routes: Routes = [
         path: 'lugares',
         canActivate: [authGuard],
         loadChildren: () => import('../lugares/lugares.module').then(m => m.LugaresModule),
+      },
+      {
+        path: 'usuarios',
+        canActivate: [authGuard],
+        loadChildren: () => import('../usuarios/usuarios.module').then(m => m.UsuariosModule)
       }
     ]
   }

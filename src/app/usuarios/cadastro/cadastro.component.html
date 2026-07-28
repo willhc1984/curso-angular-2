@@ -1,0 +1,47 @@
+<div class="p-6 max-w-lg mx-auto bg-white shadow-lg rounded-lg mt-6">
+    <h2 class="text-2x1 font-semibold text-gray-700 mb-4">Cadastrar usuário</h2>
+    <hr />
+
+    <form id="categoriaForm" [formGroup]="camposForm" (ngSubmit)="salvar()">
+        <div class="mb-4">
+            <label for="nome" class="block text-gray-600 font-medium mb-2">Nome</label>
+            <input type="text" id="nome" name="nome" formControlName="nome" placeholder="Ex: nome completo" 
+                class="w-full p-3 border border-gray-300 rounded shadow-sm focus:ring-blue-400"
+                required />
+                <span class="text-red-500 text-sm" *ngIf="isCampoInvalido('nome')">
+                    Campo obrigatório
+                </span>
+        </div>
+        <div class="mb-4">
+            <label for="email" class="block text-gray-600 font-medium mb-2">E-mail</label>
+            <input type="email" id="email" name="email" formControlName="email" placeholder="Ex: joao@hotmail.com" 
+                class="w-full p-3 border border-gray-300 rounded shadow-sm focus:ring-blue-400"
+                required />
+                <span class="text-red-500 text-sm" *ngIf="isCampoInvalido('email')">
+                    Campo obrigatório
+                </span>
+        </div>
+        <div class="mb-4">
+            <label for="senha" class="block text-gray-600 font-medium mb-2">Senha</label>
+            <input type="password" id="senha" name="senha" formControlName="senha" placeholder="Senha forte" 
+                class="w-full p-3 border border-gray-300 rounded shadow-sm focus:ring-blue-400"
+                required />
+                <span class="text-red-500 text-sm" *ngIf="isCampoInvalido('senha')">
+                    Campo obrigatório
+                </span>
+        </div>
+        <div class="mb-4">
+            <label for="password2" class="block text-gray-600 font-medium mb-2">Repita a senha</label>
+            <input type="password" id="senha2" name="senha2" formControlName="senha2" placeholder="Senha forte" 
+                class="w-full p-3 border border-gray-300 rounded shadow-sm focus:ring-blue-400"
+                required />
+                <span class="text-red-500 text-sm" *ngIf="camposForm.hasError('senhasDiferentes') && camposForm.get('senha2')?.touched">
+                    As senhas não conferem
+                </span>
+        </div>
+        <button (click)="salvar()"
+            type="button" class="w-full bg-blue-600 font-semibold p-3 rounded shadow hover:bg-blue-700">
+            Cadastrar
+        </button>
+    </form>
+</div>
