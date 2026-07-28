@@ -14,8 +14,16 @@ export class AuthService {
 
   login(email: string, senha: string){
     return this.http.get<Usuario[]>(
-      `${this.apiUrl}?login=${email}&senha=${senha}`
+      `${this.apiUrl}?email=${email}&senha=${senha}`
     );
+  }
+
+  estaLogado() : boolean {
+    return localStorage.getItem('usuario') != null;
+  }
+
+  logout(): void {
+    return localStorage.removeItem('usuario');
   }
 
 }

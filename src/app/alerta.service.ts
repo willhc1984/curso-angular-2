@@ -45,6 +45,16 @@ export class AlertaService {
     })
   }
 
+  erroModal(titulo: string, mensagem: string) : void {
+    Swal.fire({
+      icon: 'error',
+      title: titulo,
+      text: mensagem,
+      confirmButtonText: 'OK',
+      confirmButtonColor: '#2563EB'
+    });
+  }
+
   confirmar(titulo: string, texto: string) : Promise<boolean> {
     return Swal.fire({
       title: titulo,

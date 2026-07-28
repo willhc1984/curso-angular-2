@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
+import { authGuard } from '../auth/auth.guard';
 
 const routes: Routes = [
   {
@@ -9,10 +10,12 @@ const routes: Routes = [
     children: [
       {
         path: 'categorias',
+        canActivate: [authGuard],
         loadChildren: () => import('../categorias/categorias.module').then(m => m.CategoriasModule),
       },
       {
         path: 'lugares',
+        canActivate: [authGuard],
         loadChildren: () => import('../lugares/lugares.module').then(m => m.LugaresModule),
       }
     ]
