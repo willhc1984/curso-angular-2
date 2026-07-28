@@ -19,7 +19,7 @@ export class CadastroComponent {
   constructor(private usuarioService: UsuariosService, private alerta: AlertaService){
     this.camposForm = new FormGroup({
       nome: new FormControl('', Validators.required),
-      email: new FormControl('', Validators.required),
+      email: new FormControl('', [Validators.required, Validators.email]),
       senha: new FormControl('', Validators.required),
       senha2: new FormControl('', Validators.required)
     },{
@@ -56,7 +56,7 @@ export class CadastroComponent {
 
   isCampoInvalido(nomeCampo: string) : boolean {
     const campo = this.camposForm.get(nomeCampo);
-    return !!(campo?.touched && campo?.hasError('required'));
+    return !!(campo?.touched && campo?.invalid);
   }
 
   senhasIguais(control: AbstractControl) : ValidationErrors | null {

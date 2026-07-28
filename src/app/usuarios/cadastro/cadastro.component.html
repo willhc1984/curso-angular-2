@@ -17,8 +17,11 @@
             <input type="email" id="email" name="email" formControlName="email" placeholder="Ex: joao@hotmail.com" 
                 class="w-full p-3 border border-gray-300 rounded shadow-sm focus:ring-blue-400"
                 required />
-                <span class="text-red-500 text-sm" *ngIf="isCampoInvalido('email')">
+                <span class="text-red-500 text-sm" *ngIf="isCampoInvalido('email') && camposForm.get('email')?.hasError('required')">
                     Campo obrigatório
+                </span>
+                <span class="text-red-500 text-sm" *ngIf="isCampoInvalido('email') && camposForm.get('email')?.hasError('email')">
+                    E-mail inválido.
                 </span>
         </div>
         <div class="mb-4">
