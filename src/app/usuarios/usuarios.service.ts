@@ -19,4 +19,8 @@ export class UsuariosService {
     return this.http.post<Usuario>(this.apiUrl, usuario);
   }
 
+  obterTodos() : Observable<Usuario[]> {
+    return this.http.get<Usuario[]>(this.apiUrl);
+  }
+
 }

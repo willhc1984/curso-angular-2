@@ -137,6 +137,12 @@
       "email": "maria@jose.com",
       "senha": "123456",
       "id": "CPO4UOa"
+    },
+    {
+      "nome": "karlota joaquina",
+      "email": "karla@joaquina",
+      "senha": "123",
+      "id": "bR7xn-I"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

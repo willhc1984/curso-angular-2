@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Usuario } from '../usuario';
+import { UsuariosService } from '../usuarios.service';
 
 @Component({
   selector: 'app-consulta',
@@ -6,6 +8,21 @@ import { Component } from '@angular/core';
   templateUrl: './consulta.component.html',
   styleUrl: './consulta.component.scss'
 })
-export class ConsultaComponent {
+
+export class ConsultaComponent implements OnInit{
+
+  usuarios: Usuario[] = [];
+
+  constructor(private usuarioService: UsuariosService){}
+
+  ngOnInit(): void {
+    this.usuarioService.obterTodos().subscribe({
+      next: (listaUsuarios) => {
+        this.usuarios = listaUsuarios,
+        console.log(this.usuarios);
+      }
+    });
+  }
+  
 
 }
