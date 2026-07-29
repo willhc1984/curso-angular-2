@@ -22,6 +22,10 @@ const routes: Routes = [
         path: 'usuarios',
         canActivate: [authGuard],
         loadChildren: () => import('../usuarios/usuarios.module').then(m => m.UsuariosModule)
+      },
+      {
+        path: '',
+        loadChildren:  () => import('../galeria/galeria.module').then(m => m.GaleriaModule)
       }
     ]
   }

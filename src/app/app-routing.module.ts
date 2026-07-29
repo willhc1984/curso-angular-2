@@ -12,8 +12,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
+    loadChildren: () => import('./template/template.module').then(m => m.TemplateModule)
   }
 ];
 
