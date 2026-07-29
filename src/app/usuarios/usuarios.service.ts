@@ -23,4 +23,8 @@ export class UsuariosService {
     return this.http.get<Usuario[]>(this.apiUrl);
   }
 
+  excluir(id: string) : Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+
 }
