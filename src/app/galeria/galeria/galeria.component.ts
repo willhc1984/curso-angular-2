@@ -14,7 +14,9 @@ import { CategoriaService } from '../../categorias/categoria.service';
 export class GaleriaComponent implements OnInit{
 
   lugares: Lugar[] = [];
-  categoriasFiltro: Categoria[] = []
+  categoriasFiltro: Categoria[] = [];
+  nomeFiltro: string = '';
+  categoriaFiltro: string = '';
 
   constructor(private lugarService: LugarService, private categoriaService: CategoriaService){}
 
@@ -23,6 +25,15 @@ export class GaleriaComponent implements OnInit{
       .subscribe(categorias => { this.categoriasFiltro = categorias; console.log(this.categoriasFiltro); });
     this.lugarService.obterTodos()
       .subscribe(lugares => {this.lugares = lugares; console.log(this.lugares); });
+  }
+
+  getTotalEstrelas(lugar: Lugar) : string {
+    return '&#9733;'.repeat(lugar.avaliacao) + '&#9734;'.repeat(5 - (lugar.avaliacao));
+  }
+
+  filtrar(){
+    this.lugarService.filtrar(this.nomeFiltro, this.categoriaFiltro)
+      .subscribe(resultado => this.lugares = resultado);
   }
 
 }
