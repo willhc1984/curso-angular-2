@@ -23,7 +23,7 @@
                     <td class="px-6 py-4">{{ usuario.nome }}</td>
                     <td class="px-6 py-4">{{ usuario.email }}</td>
                     <td class="px-6 py-4 text-center">
-                    <button
+                    <button [routerLink]="['/paginas/usuarios/editar', usuario.id]"
                         class="mr-2 rounded bg-blue-600 px-3 py-1 text-sm font-semibold text-white hover:bg-blue-700">
                         Editar
                     </button>

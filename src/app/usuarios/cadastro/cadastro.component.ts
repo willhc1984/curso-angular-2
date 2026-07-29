@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Usuario } from '../usuario';
 import { UsuariosService } from '../usuarios.service';
 import { AlertaService } from '../../alerta.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -12,11 +13,12 @@ import { AlertaService } from '../../alerta.service';
   styleUrl: './cadastro.component.scss'
 })
 
-export class CadastroComponent {
+export class CadastroComponent implements OnInit{
 
   camposForm: FormGroup;
+  id?: string;
 
-  constructor(private usuarioService: UsuariosService, private alerta: AlertaService){
+  constructor(private usuarioService: UsuariosService, private alerta: AlertaService, private router: Router, private route: ActivatedRoute){
     this.camposForm = new FormGroup({
       nome: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -24,6 +26,25 @@ export class CadastroComponent {
       senha2: new FormControl('', Validators.required)
     },{
       validators: this.senhasIguais
+    });
+  }
+
+  ngOnInit(): void {
+    this.id = this.route.snapshot.paramMap.get('id') ?? undefined;
+    if(this.id){
+      this.carregarUsuarioId(this.id);
+      console.log('ID: ', this.id);
+    }
+  }
+
+  carregarUsuarioId(id: string) : void {
+    this.usuarioService.obterPorId(id).subscribe({
+      next: usuario => {
+        this.camposForm.patchValue({
+          nome: usuario.nome,
+          email: usuario.email,
+        });
+      }
     });
   }
 
@@ -52,6 +73,30 @@ export class CadastroComponent {
           console.log('Ocorreu um erro: ', erro);
         }
       }); 
+  }
+
+  atualizar() : void {
+    this.camposForm.markAllAsTouched();
+    if(this.camposForm.invalid || !this.id){
+      return;
+    }
+
+    const usuario: Usuario = {
+      id: this.id,
+      ...this.camposForm.value
+    };
+
+    console.log(usuario);
+
+    this.usuarioService.atualizar(usuario).subscribe({
+      next: () => {
+        this.alerta.sucesso('Dados atualizados!');
+        this.router.navigate(['/paginas/usuarios/consulta']);
+      },
+      error: () => { 
+        this.alerta.erro('Erro ao atualizar dados.') 
+      }
+    });
   }
 
   isCampoInvalido(nomeCampo: string) : boolean {

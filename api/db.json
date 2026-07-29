@@ -111,13 +111,20 @@
       "id": "2",
       "nome": "Willian",
       "email": "will-hc-1984@hotmail.com",
-      "senha": "123456"
+      "senha": "123",
+      "senha2": "123"
     },
     {
       "nome": "joaquim josé xavier",
       "email": "joaquim@jose",
       "senha": "123",
       "id": "RbCJzB8"
+    },
+    {
+      "nome": "amélia santos",
+      "email": "ameliaa@ntos",
+      "senha": "123",
+      "id": "NET4EcI"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

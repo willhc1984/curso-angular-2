@@ -41,10 +41,13 @@
                 <span class="text-red-500 text-sm" *ngIf="camposForm.hasError('senhasDiferentes') && camposForm.get('senha2')?.touched">
                     As senhas não conferem
                 </span>
+                <span class="text-red-500 text-sm" *ngIf="isCampoInvalido('senha2')">
+                    - Campo obrigatório 
+                </span>
         </div>
-        <button (click)="salvar()"
+        <button (click)="id ? atualizar() : salvar()"
             type="button" class="w-full bg-blue-600 font-semibold p-3 rounded shadow hover:bg-blue-700">
-            Cadastrar
+            {{ id ? 'Atualizar' : 'Salvar' }}
         </button>
     </form>
 </div>

@@ -27,4 +27,12 @@ export class UsuariosService {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
+  obterPorId(id: string) {
+    return this.http.get<Usuario>(`${this.apiUrl}/${id}`);
+  }
+
+  atualizar(usuario: Usuario) {
+    return this.http.put<Usuario>(`${this.apiUrl}/${usuario.id}`, usuario);
+  }
+
 }

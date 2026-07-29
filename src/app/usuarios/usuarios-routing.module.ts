@@ -11,6 +11,10 @@ const routes: Routes = [
   {
     path: 'cadastro',
     component: CadastroComponent
+  },
+  {
+    path: 'editar/:id',
+    component: CadastroComponent
   }
 ];
 
