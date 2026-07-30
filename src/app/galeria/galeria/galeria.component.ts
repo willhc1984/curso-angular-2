@@ -21,10 +21,10 @@ export class GaleriaComponent implements OnInit{
   constructor(private lugarService: LugarService, private categoriaService: CategoriaService){}
 
   ngOnInit(): void {
-    this.categoriaService.obterTodas()
-      .subscribe(categorias => { this.categoriasFiltro = categorias; console.log(this.categoriasFiltro); });
-    this.lugarService.obterTodos()
-      .subscribe(lugares => {this.lugares = lugares; console.log(this.lugares); });
+    // this.categoriaService.obterTodas()
+    //   .subscribe(categorias => { this.categoriasFiltro = categorias; console.log(this.categoriasFiltro); });
+    // this.lugarService.obterTodos()
+    //   .subscribe(lugares => {this.lugares = lugares; console.log(this.lugares); });
   }
 
   getTotalEstrelas(lugar: Lugar) : string {

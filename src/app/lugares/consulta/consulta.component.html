@@ -44,6 +44,13 @@
                 </tr>
             </tbody>
         </table>
+
+        <div class="flex justify-center mt-8 gap-2">
+            <button (click)="paginaAnterior()" class="px-4 py-2 bg-gray-200 rounded">Anterior</button>
+            <span class="px-4 py-2">Página {{ paginaAtual }}</span>
+            <button (click)="proximaPagina()" class="px-4 py-2 bg-blue-600 text-white rounded">Próxima</button>
+        </div>
+
         <!-- <a routerLink="/categorias/cadastro" class="inline-block mt-4 ml-4 rounded bg-blue-600  px-3 pu-2 text-sm font-semibold text-white hover:bg-blue-700"></a> -->
         <button
             routerLink="/paginas/lugares/cadastro"

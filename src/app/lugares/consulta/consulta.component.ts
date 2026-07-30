@@ -13,11 +13,13 @@ import { AlertaService } from '../../alerta.service';
 export class ConsultaComponent implements OnInit{
 
   lugares: Lugar[] = [];
+  paginaAtual: number = 1;
+  itensPorPagina: number = 5;
 
   constructor(private lugarService: LugarService, private alerta: AlertaService){}
 
   ngOnInit(): void {
-    this.lugarService.obterTodos()
+    this.lugarService.obterTodos(this.paginaAtual, this.itensPorPagina)
       .subscribe({
         next: (listaLugares) => {
           this.lugares = listaLugares,
@@ -48,6 +50,14 @@ export class ConsultaComponent implements OnInit{
           }
         })
      })  
+  }
+
+  paginaAnterior(){
+
+  }
+
+  proximaPagina(){
+
   }
 
 }

@@ -19,8 +19,8 @@ export class LugarService {
     return this.http.post<Lugar>(this.apiUrl, lugar);
   }
 
-  obterTodos() : Observable<Lugar[]>{
-    return this.http.get<Lugar[]>(this.apiUrl);
+  obterTodos(pagina: number, itensPorPagina: number) : Observable<Lugar[]>{
+    return this.http.get<Lugar[]>(`${this.apiUrl}?_page=${pagina}&_limit=${itensPorPagina}`);
   }
 
   excluir(id: string) : Observable<void>{
