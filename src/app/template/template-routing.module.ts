@@ -12,20 +12,24 @@ const routes: Routes = [
         path: 'categorias',
         canActivate: [authGuard],
         loadChildren: () => import('../categorias/categorias.module').then(m => m.CategoriasModule),
+        data: { titulo: 'Categorias', subTitulo: 'CRUD de categorias'}
       },
       {
         path: 'lugares',
         canActivate: [authGuard],
         loadChildren: () => import('../lugares/lugares.module').then(m => m.LugaresModule),
+        data: { titulo: 'Lugares', subTitulo: 'CRUD de lugares'}
       },
       {
         path: 'usuarios',
         canActivate: [authGuard],
-        loadChildren: () => import('../usuarios/usuarios.module').then(m => m.UsuariosModule)
+        loadChildren: () => import('../usuarios/usuarios.module').then(m => m.UsuariosModule),
+        data: { titulo: 'Usuários', subTitulo: 'CRUD de usuários' }
       },
       {
         path: '',
-        loadChildren:  () => import('../galeria/galeria.module').then(m => m.GaleriaModule)
+        loadChildren:  () => import('../galeria/galeria.module').then(m => m.GaleriaModule),
+        data: { titulo: 'Galeria', subTitulo: 'Descubra os melhores lugares' }
       }
     ]
   }
