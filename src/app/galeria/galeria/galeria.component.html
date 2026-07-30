@@ -1,13 +1,13 @@
 <!-- Filtros -->
- <form #frm="ngForm" [(ngModel)]="nomeFiltro" name="nomeFiltro">
+ <form #frm="ngForm">
     <div class="p-4 bg-white shadow">
         <div class="flex flex-col md:flex-row itemscenter justify-center gap-4">
-            <input type="text" placeholder="Pesquisar pelo nome do local"  
+            <input type="text" [(ngModel)]="nomeFiltro" name="nomeFiltro" placeholder="Pesquisar pelo nome do local"  
                 class="w-full border border-gray-300 p-2 rounded shadow-sm focus:ring focus:ring-blue-400"
                 />
             <select [(ngModel)]="categoriaFiltro" name="categoriaFiltro" 
                 class="w-full border border-gray-300 p-2 rounded shadow-sm focus:ring focus:ring-blue-400">
-                <option [value]="">Todas as categorias</option>
+                <option [value]="-1">Todas as categorias</option>
                 <option *ngFor="let categoria of categoriasFiltro" [value]="categoria.nome" >{{ categoria.nome }}</option>
             </select>
             <button (click)="filtrar()" 

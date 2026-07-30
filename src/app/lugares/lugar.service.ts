@@ -41,12 +41,12 @@ export class LugarService {
     if(nome){
       parametros = parametros.set('nome_like', nome);
     }
-    if(categoria){
+    if(categoria && categoria !== '-1'){
       parametros = parametros.set('categoria', categoria);
     }
  
     console.log(parametros);
-    
+
     return this.http.get<Lugar[]>('http://localhost:3000/lugares', {
       params: parametros
     });
