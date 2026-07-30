@@ -3,6 +3,7 @@ import { AuthService } from '../../auth/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LayoutProps } from '../layoutprops';
 import { filter, map } from 'rxjs';
+import { Usuario } from '../../auth/usuario';
 
 @Component({
   selector: 'app-layout',
@@ -37,13 +38,12 @@ export class LayoutComponent implements OnInit {
 
   logout(event: Event) : void {
     event.preventDefault();
-    console.log(event);
     this.authService.logout();
     this.router.navigate(['/']);
   }
 
-  get usuarioLogado() : boolean {
-    return this.authService.estaLogado();
+  get usuarioLogado() : Usuario | null {
+    return this.authService.getUsuarioLogado();
   }
 
 }

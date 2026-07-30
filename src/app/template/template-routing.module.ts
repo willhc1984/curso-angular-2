@@ -30,6 +30,11 @@ const routes: Routes = [
         path: '',
         loadChildren:  () => import('../galeria/galeria.module').then(m => m.GaleriaModule),
         data: { titulo: 'Galeria', subTitulo: 'Descubra os melhores lugares' }
+      },
+      {
+        path: 'login',
+        loadChildren: () => import('../auth/auth.module').then(m => m.AuthModule),
+        data: { titulo: 'Login', subTitulo: 'Realizar login no sistema'}
       }
     ]
   }

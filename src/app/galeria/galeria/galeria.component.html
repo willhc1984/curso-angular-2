@@ -10,7 +10,7 @@
                 <option [value]="-1">Todas as categorias</option>
                 <option *ngFor="let categoria of categoriasFiltro" [value]="categoria.nome" >{{ categoria.nome }}</option>
             </select>
-            <button (click)="filtrar()" 
+            <button (click)="filtrar()"
                 class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-800">
                 Pesquisar
             </button>
@@ -22,7 +22,7 @@
 <!-- Listagem de lugares -->
  <div id="lugaresList" class="p-14 grid grid-col-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     <div class="bg-white shadow rounded overflow-hidden" *ngFor="let lugar of lugares">
-        <img [src]="lugar.urlFoto" [alt]="lugar.nome" class="w-full h-60 object-cover"/>
+        <img [src]="lugar.urlFoto" [alt]="lugar.nome" class="w-full h-60 object-cover" />
         <div class="p-4">
             <h2 class="text-lg font-semibold">{{ lugar.nome }}</h2>
             <p class="text-gray-500">Categoria: <span class="text-blue-600">{{ lugar.categoria }}</span></p>

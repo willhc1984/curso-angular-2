@@ -28,13 +28,12 @@ export class LoginComponent {
       this.camposForm.value.senha
     ).subscribe({
       next: usuarios => {
-        console.log(usuarios);
         if(usuarios.length > 0){
           localStorage.setItem(
             'usuario', 
             JSON.stringify(usuarios[0]),
           );
-          this.router.navigate(['/paginas/categorias/consulta'])
+          this.router.navigate(['/'])
         }else{
           this.alerta.erroModal('Erro', 'Usuário ou senha inválidos!');
         }
