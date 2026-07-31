@@ -47,7 +47,7 @@ export class LugarService {
  
     console.log(parametros.toString());
 
-    return this.http.get<Lugar[]>('http://localhost:3000/lugares', {
+    return this.http.get<Lugar[]>(`${this.apiUrl}`, {
       params: parametros
     });
   }

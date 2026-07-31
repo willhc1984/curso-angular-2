@@ -19,13 +19,20 @@ export class ConsultaComponent implements OnInit{
   constructor(private lugarService: LugarService, private alerta: AlertaService){}
 
   ngOnInit(): void {
-    this.lugarService.obterTodos(this.paginaAtual, this.itensPorPagina)
-      .subscribe({
-        next: (listaLugares) => {
-          this.lugares = listaLugares,
-          console.log(this.lugares)
-        }
-      })
+    this.carregarLugares();
+    // this.lugarService.obterTodos()
+    //   .subscribe({
+    //     next: (listaLugares) => {
+    //       this.lugares = listaLugares,
+    //       console.log(this.lugares)
+    //     }
+    //   })
+  }
+
+  carregarLugares() : void {
+    this.lugarService
+      .obterTodos(this.paginaAtual, this.itensPorPagina)
+      .subscribe(resultado => { this.lugares = resultado; })
   }
 
   excluirLugar(id: string) : void {
@@ -52,12 +59,16 @@ export class ConsultaComponent implements OnInit{
      })  
   }
 
-  paginaAnterior(){
-
+  paginaAnterior(): void {
+     if(this.paginaAtual > 1){
+       this.paginaAtual--;
+       this.carregarLugares();
+    }
   }
 
-  proximaPagina(){
-
+  proximaPagina() : void {
+    this.paginaAtual++;
+    this.carregarLugares();
   }
 
 }

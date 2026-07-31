@@ -17,14 +17,16 @@ export class GaleriaComponent implements OnInit{
   categoriasFiltro: Categoria[] = [];
   nomeFiltro: string = '';
   categoriaFiltro: string = '';
+  paginaAtual = 1;
+  itensPorPagina = 15;
 
   constructor(private lugarService: LugarService, private categoriaService: CategoriaService){}
 
   ngOnInit(): void {
-    // this.categoriaService.obterTodas()
-    //   .subscribe(categorias => { this.categoriasFiltro = categorias; console.log(this.categoriasFiltro); });
-    // this.lugarService.obterTodos()
-    //   .subscribe(lugares => {this.lugares = lugares; console.log(this.lugares); });
+    this.categoriaService.obterTodas()
+      .subscribe(categorias => { this.categoriasFiltro = categorias; console.log(this.categoriasFiltro); });
+    this.lugarService.obterTodos(this.paginaAtual, this.itensPorPagina)
+      .subscribe(lugares => {this.lugares = lugares; console.log(this.lugares); });
   }
 
   getTotalEstrelas(lugar: Lugar) : string {
