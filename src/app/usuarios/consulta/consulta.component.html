@@ -36,6 +36,14 @@
                 </tr>
             </tbody>
         </table>
+
+        <!-- Paginação-->
+        <div class="flex justify-center mt-8 gap-2">
+            <button (click)="paginaAnterior()" [disabled]="paginaAtual === 1" class="px-4 py-2 bg-blue-600 text-white rounded">Anterior</button>
+            <span class="px-4 py-2">Página {{ paginaAtual }} de {{ totalPaginas }}</span>            
+            <button (click)="proximaPagina()" [disabled]="paginaAtual === totalPaginas" class="px-4 py-2 bg-blue-600 text-white rounded">Próxima</button>
+        </div>
+
         <!-- <a routerLink="/categorias/cadastro" class="inline-block mt-4 ml-4 rounded bg-blue-600  px-3 pu-2 text-sm font-semibold text-white hover:bg-blue-700"></a> -->
         <button
             routerLink="/paginas/usuarios/cadastro"

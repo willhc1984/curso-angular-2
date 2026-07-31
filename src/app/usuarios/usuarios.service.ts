@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Usuario } from './usuario';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../api/environment';
 
@@ -17,6 +17,15 @@ export class UsuariosService {
 
   salvar(usuario: Usuario) : Observable<Usuario>{
     return this.http.post<Usuario>(this.apiUrl, usuario);
+  }
+
+  obterPaginacao(pagina: number, itensPorPagina: number) : Observable<HttpResponse<Usuario[]>> {
+    return this.http.get<Usuario[]>(
+      `${this.apiUrl}?_page=${pagina}&_limit=${itensPorPagina}`,
+      {
+        observe: 'response'
+      }
+    )
   }
 
   obterTodos() : Observable<Usuario[]> {

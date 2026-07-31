@@ -13,16 +13,30 @@ import { AlertaService } from '../../alerta.service';
 export class ConsultaComponent implements OnInit{
 
   usuarios: Usuario[] = [];
+  paginaAtual: number = 1;
+  itensPorPagina: number = 1;
+  totalPaginas: number = 0;
 
   constructor(private usuarioService: UsuariosService, private alerta: AlertaService){}
 
   ngOnInit(): void {
-    this.usuarioService.obterTodos().subscribe({
-      next: (listaUsuarios) => {
-        this.usuarios = listaUsuarios,
-        console.log(this.usuarios);
-      }
-    });
+    this.carregarUsuarioPaginacao();
+  }
+
+  carregarUsuarioPaginacao() : void {
+    this.usuarioService.obterPaginacao(this.paginaAtual, this.itensPorPagina)
+      .subscribe({
+        next: response => {
+          this.usuarios = response.body ?? [];
+          const totalRegistros = Number(
+            response.headers.get('X-Total-Count')
+          );
+
+          this.totalPaginas = Math.ceil(
+            totalRegistros / this.itensPorPagina
+          )
+        }
+      });
   }
 
   excluirUsuario(id: string) : void {
@@ -46,6 +60,20 @@ export class ConsultaComponent implements OnInit{
           }
         });
       })
+  }
+
+  proximaPagina() : void {
+    if(this.paginaAtual < this.totalPaginas){
+      this.paginaAtual++;
+      this.carregarUsuarioPaginacao();
+    }
+  }
+
+  paginaAnterior() : void {
+    if(this.paginaAtual > 1){
+      this.paginaAtual--;
+      this.carregarUsuarioPaginacao();
+    }
   }
   
 
