@@ -7,9 +7,6 @@
             <thead class="bg-blue-600">
             <tr>
                 <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-white">
-                ID
-                </th>
-                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-white">
                 Nome
                 </th>
                 <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-white">
@@ -23,7 +20,6 @@
 
             <tbody class="divide-y divide-gray-200 bg-white">
                 <tr class="hover:bg-gray-100" *ngFor="let categoria of categorias">
-                    <td class="px-6 py-4">{{ categoria.id }}</td>
                     <td class="px-6 py-4">{{ categoria.nome }}</td>
                     <td class="px-6 py-4">{{ categoria.descricao }}</td>
                     <td class="px-6 py-4 text-center">
@@ -40,6 +36,14 @@
                 </tr>
             </tbody>
         </table>
+
+        <!-- Paginação-->
+        <div class="flex justify-center mt-8 gap-2">
+            <button (click)="paginaAnterior()" [disabled]="paginaAtual === 1" class="px-4 py-2 bg-blue-600 text-white rounded">Anterior</button>
+            <span class="px-4 py-2">Página {{ paginaAtual }} de {{ totalPaginas }}</span>            
+            <button (click)="proximaPagina()" [disabled]="paginaAtual === totalPaginas" class="px-4 py-2 bg-blue-600 text-white rounded">Próxima</button>
+        </div>
+
         <!-- <a routerLink="/categorias/cadastro" class="inline-block mt-4 ml-4 rounded bg-blue-600  px-3 pu-2 text-sm font-semibold text-white hover:bg-blue-700"></a> -->
         <button
             routerLink="/paginas/categorias/cadastro"

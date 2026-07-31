@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Categoria } from './categoria';
 import { Observable } from 'rxjs';
 import { environment } from '../../../api/environment';
@@ -20,6 +20,15 @@ export class CategoriaService {
 
   obterTodas() : Observable<Categoria[]> {
     return this.http.get<Categoria[]>(this.apiUrl);
+  }
+
+  obterPaginacao(pagina: number, itensPorPagina: number) : Observable<HttpResponse<Categoria[]>> {
+    return this.http.get<Categoria[]>(
+      `${this.apiUrl}?_page=${pagina}&_limit=${itensPorPagina}`,
+      {
+        observe: 'response'
+      }
+    );
   }
 
   excluir(id: string) :  Observable<void> {

@@ -36,13 +36,12 @@ export class ConsultaComponent implements OnInit{
           this.totalPaginas = Math.ceil(
             totalRegistros / this.itensPorPagina
           )
-
           // console.log(response.body);
           // console.log(response.headers);
           // console.log(response.status);
           // console.log(response.url);
         }
-      });
+    });
   }
 
   excluirLugar(id: string) : void {
