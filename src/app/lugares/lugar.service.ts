@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Lugar } from './lugar';
 import { environment } from '../../../api/environment';
-import { Categoria } from '../categorias/categoria';
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +18,13 @@ export class LugarService {
     return this.http.post<Lugar>(this.apiUrl, lugar);
   }
 
-  obterTodos(pagina: number, itensPorPagina: number) : Observable<Lugar[]>{
-    return this.http.get<Lugar[]>(`${this.apiUrl}?_page=${pagina}&_limit=${itensPorPagina}`);
+  obterTodos(pagina: number, itensPorPagina: number) : Observable<HttpResponse<Lugar[]>> {
+    return this.http.get<Lugar[]>(
+      `${this.apiUrl}?_page=${pagina}&_limit=${itensPorPagina}`,
+      {
+        observe: 'response'
+      }
+    );
   }
 
   excluir(id: string) : Observable<void>{

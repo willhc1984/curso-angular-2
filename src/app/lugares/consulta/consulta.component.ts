@@ -15,24 +15,34 @@ export class ConsultaComponent implements OnInit{
   lugares: Lugar[] = [];
   paginaAtual: number = 1;
   itensPorPagina: number = 5;
+  totalPaginas: number = 0;
 
   constructor(private lugarService: LugarService, private alerta: AlertaService){}
 
   ngOnInit(): void {
     this.carregarLugares();
-    // this.lugarService.obterTodos()
-    //   .subscribe({
-    //     next: (listaLugares) => {
-    //       this.lugares = listaLugares,
-    //       console.log(this.lugares)
-    //     }
-    //   })
   }
 
   carregarLugares() : void {
     this.lugarService
       .obterTodos(this.paginaAtual, this.itensPorPagina)
-      .subscribe(resultado => { this.lugares = resultado; })
+      .subscribe({
+        next: response => {
+          this.lugares = response.body ?? [];
+          const totalRegistros = Number(
+            response.headers.get('X-Total-Count')
+          );
+
+          this.totalPaginas = Math.ceil(
+            totalRegistros / this.itensPorPagina
+          )
+
+          // console.log(response.body);
+          // console.log(response.headers);
+          // console.log(response.status);
+          // console.log(response.url);
+        }
+      });
   }
 
   excluirLugar(id: string) : void {
@@ -59,16 +69,18 @@ export class ConsultaComponent implements OnInit{
      })  
   }
 
+  proximaPagina() : void {
+    if(this.paginaAtual < this.totalPaginas){
+      this.paginaAtual++;
+      this.carregarLugares();
+    }
+  }
+
   paginaAnterior(): void {
      if(this.paginaAtual > 1){
        this.paginaAtual--;
        this.carregarLugares();
     }
-  }
-
-  proximaPagina() : void {
-    this.paginaAtual++;
-    this.carregarLugares();
   }
 
 }
