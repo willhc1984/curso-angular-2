@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Usuario } from '../usuario';
+import { Usuario } from '../../models/usuario';
 import { UsuariosService } from '../usuarios.service';
 import { AlertaService } from '../../alerta.service';
 
@@ -14,7 +14,7 @@ export class ConsultaComponent implements OnInit{
 
   usuarios: Usuario[] = [];
   paginaAtual: number = 1;
-  itensPorPagina: number = 1;
+  itensPorPagina: number = 3;
   totalPaginas: number = 0;
 
   constructor(private usuarioService: UsuariosService, private alerta: AlertaService){}

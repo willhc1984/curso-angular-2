@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Categoria } from '../../categorias/categoria';
+import { Categoria } from '../../models/categoria';
 import { CategoriaService } from '../../categorias/categoria.service';
 import { LugarService } from '../lugar.service';
 import { AlertaService } from '../../alerta.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Lugar } from '../lugar';
+import { Lugar } from '../../models/lugar';
 
 @Component({
   selector: 'app-lugar',

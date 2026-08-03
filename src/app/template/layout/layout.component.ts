@@ -3,7 +3,7 @@ import { AuthService } from '../../auth/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LayoutProps } from '../layoutprops';
 import { filter, map } from 'rxjs';
-import { Usuario } from '../../auth/usuario';
+import { Usuario } from '../../models/usuario';
 
 @Component({
   selector: 'app-layout',

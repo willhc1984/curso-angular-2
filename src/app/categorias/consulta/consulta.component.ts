@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoriaService } from '../categoria.service';
-import { Categoria } from '../categoria';
+import { Categoria } from '../../models/categoria';
 import { AlertaService } from '../../alerta.service';
 
 

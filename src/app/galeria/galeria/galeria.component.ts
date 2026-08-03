@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Lugar } from '../../lugares/lugar';
-import { Categoria } from '../../categorias/categoria';
+import { Lugar } from '../../models/lugar';
+import { Categoria } from '../../models/categoria';
 import { LugarService } from '../../lugares/lugar.service';
 import { CategoriaService } from '../../categorias/categoria.service';
 

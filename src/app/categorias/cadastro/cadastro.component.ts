@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CategoriaService } from '../categoria.service';
 import { AlertaService } from '../../alerta.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Categoria } from '../categoria';
+import { Categoria } from '../../models/categoria';
 
 @Component({
   selector: 'app-categoria',

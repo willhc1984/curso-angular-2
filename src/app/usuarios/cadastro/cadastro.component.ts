@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
-import { Usuario } from '../usuario';
+import { Usuario } from '../../models/usuario';
 import { UsuariosService } from '../usuarios.service';
 import { AlertaService } from '../../alerta.service';
 import { ActivatedRoute, Router } from '@angular/router';
