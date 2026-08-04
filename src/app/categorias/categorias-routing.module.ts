@@ -2,19 +2,33 @@ import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ConsultaComponent } from './consulta/consulta.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
+import { permissionGuard } from '../auth/permission.guard';
+import { PERMISSOES } from '../models/permissoes';
 
 const routes: Routes = [
   {
     path: 'cadastro',
-    component: CadastroComponent
+    component: CadastroComponent,
+    canActivate: [permissionGuard],
+    data: { 
+      permissao: PERMISSOES.CATEGORIA_CRIAR
+    }
   },
   {
     path: 'consulta',
-    component: ConsultaComponent
+    component: ConsultaComponent,
+    canActivate: [permissionGuard],
+    data: {
+      permissao: PERMISSOES.CATEGORIA_VISUALIZAR
+    }
   },
   {
     path: 'editar/:id',
-    component: CadastroComponent
+    component: CadastroComponent,
+    canActivate: [permissionGuard],
+    data: {
+      permissao: PERMISSOES.CATEGORIA_EDITAR
+    }
   },
  
 ];

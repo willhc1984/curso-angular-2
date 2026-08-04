@@ -12,13 +12,13 @@ const routes: Routes = [
         path: 'categorias',
         canActivate: [authGuard],
         loadChildren: () => import('../categorias/categorias.module').then(m => m.CategoriasModule),
-        data: { titulo: 'Categorias', subTitulo: 'CRUD de categorias'}
+        data: { titulo: 'Categorias', subTitulo: 'CRUD de categorias' }
       },
       {
         path: 'lugares',
         canActivate: [authGuard],
         loadChildren: () => import('../lugares/lugares.module').then(m => m.LugaresModule),
-        data: { titulo: 'Lugares', subTitulo: 'CRUD de lugares'}
+        data: { titulo: 'Lugares', subTitulo: 'CRUD de lugares' }
       },
       {
         path: 'usuarios',
@@ -34,7 +34,7 @@ const routes: Routes = [
       {
         path: 'login',
         loadChildren: () => import('../auth/auth.module').then(m => m.AuthModule),
-        data: { titulo: 'Login', subTitulo: 'Realizar login no sistema'}
+        data: { titulo: 'Login', subTitulo: 'Realizar login no sistema' }
       }
     ]
   }

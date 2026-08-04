@@ -7,6 +7,13 @@ export const permissionGuard: CanActivateFn = (route, state) => {
   const auth = inject(AuthService);
   const router = inject(Router);
   
+  const permissao = route.data['permissao'];
+
+  if(auth.temPermissao(permissao)){
+    return true;
+  }
+
+  router.navigate(['/']);  
   return false;
 
 };
