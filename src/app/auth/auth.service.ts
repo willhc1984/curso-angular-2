@@ -22,13 +22,23 @@ export class AuthService {
     return localStorage.getItem('usuario') != null;
   }
 
-  logout(): void {
-    return localStorage.removeItem('usuario');
+  temPermissao(permissao: string) : boolean {
+    const usuario = this.getUsuarioLogado();
+
+    if(!usuario) {
+      return false;
+    }
+
+    return usuario.permissoes?.includes(permissao) ?? false;
   }
 
   getUsuarioLogado() : Usuario | null {
     const usuario = localStorage.getItem('usuario');
     return usuario ? JSON.parse(usuario) : null;
+  }
+
+  logout(): void {
+    return localStorage.removeItem('usuario');
   }
 
 }

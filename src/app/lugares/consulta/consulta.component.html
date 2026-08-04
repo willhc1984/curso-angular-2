@@ -31,12 +31,14 @@
                     <td class="px-6 py-4 max-w-xs truncate">{{ lugar.localizacao }}</td>                    
                     <td class="px-6 py-4">{{ lugar.avaliacao }}</td>
                     <td class="px-6 py-4 text-center">
-                    <button [routerLink]="['/paginas/lugares/editar', lugar.id]"
+                    <button *ngIf="authService.temPermissao('lugares.editar')" 
+                        [routerLink]="['/paginas/lugares/editar', lugar.id]"
                         class="mr-2 rounded bg-blue-600 px-3 py-1 text-sm font-semibold text-white hover:bg-blue-700">
                         Editar
                     </button>
 
-                    <button (click)="excluirLugar(lugar.id)"
+                    <button *ngIf="authService.temPermissao('lugares.excluir')" 
+                        (click)="excluirLugar(lugar.id)"
                         class="rounded bg-red-600 px-3 py-1 text-sm font-semibold text-white hover:bg-red-700">
                         Excluir
                     </button>
@@ -55,6 +57,7 @@
 
         <!-- <a routerLink="/categorias/cadastro" class="inline-block mt-4 ml-4 rounded bg-blue-600  px-3 pu-2 text-sm font-semibold text-white hover:bg-blue-700"></a> -->
         <button
+        *ngIf="authService.temPermissao('lugares.criar')"
             routerLink="/paginas/lugares/cadastro"
             class="mt-4 ml-4 mb-4 rounded bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:bg-blue-700">
             Cadastrar

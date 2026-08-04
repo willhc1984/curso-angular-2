@@ -104,27 +104,45 @@
     {
       "id": "1",
       "nome": "Administrador",
-      "email": "admin",
-      "senha": "123456"
+      "email": "admin@email.com",
+      "senha": "123",
+      "senha2": "123",
+      "permissoes": [
+        "categorias.visualizar",
+        "categorias.criar",
+        "categorias.editar",
+        "categorias.excluir",
+        "lugares.visualizar",
+        "lugares.criar",
+        "lugares.editar",
+        "lugares.excluir",
+        "usuarios.visualizar",
+        "usuarios.criar",
+        "usuarios.editar",
+        "usuarios.excluir"
+      ]
     },
     {
-      "id": "2",
-      "nome": "Willian",
-      "email": "will-hc-1984@hotmail.com",
+      "nome": "ana",
+      "email": "ana@email.com",
       "senha": "123",
-      "senha2": "123"
+      "permissoes": [
+        "categorias.visualizar",
+        "lugares.visualizar",
+        "usuarios.visualizar"
+      ],
+      "id": "Buj9MHs"
     },
     {
-      "nome": "joaquim josé xavier",
-      "email": "joaquim@jose",
+      "nome": "jose maria",
+      "email": "jose@maria",
       "senha": "123",
-      "id": "RbCJzB8"
-    },
-    {
-      "nome": "amélia santos",
-      "email": "ameliaa@ntos",
-      "senha": "123",
-      "id": "NET4EcI"
+      "permissoes": [
+        "categorias.visualizar",
+        "lugares.visualizar",
+        "usuarios.visualizar"
+      ],
+      "id": "2q28Ifl"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

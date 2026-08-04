@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LugarService } from '../lugar.service';
 import { Lugar } from '../../models/lugar';
 import { AlertaService } from '../../alerta.service';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-consulta',
@@ -17,7 +18,7 @@ export class ConsultaComponent implements OnInit{
   itensPorPagina: number = 5;
   totalPaginas: number = 0;
 
-  constructor(private lugarService: LugarService, private alerta: AlertaService){}
+  constructor(private lugarService: LugarService, private alerta: AlertaService, public authService: AuthService){}
 
   ngOnInit(): void {
     this.carregarLugares();

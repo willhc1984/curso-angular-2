@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CategoriaService } from '../categoria.service';
 import { Categoria } from '../../models/categoria';
 import { AlertaService } from '../../alerta.service';
+import { AuthService } from '../../auth/auth.service';
 
 
 @Component({
@@ -20,7 +21,8 @@ export class ConsultaComponent implements OnInit{
 
   constructor(
       private categoriaService: CategoriaService,
-      private alerta: AlertaService
+      private alerta: AlertaService,
+      public authService: AuthService
     ){}
 
   ngOnInit(): void {

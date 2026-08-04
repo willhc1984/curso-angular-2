@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { LayoutProps } from '../layoutprops';
 import { filter, map } from 'rxjs';
 import { Usuario } from '../../models/usuario';
+import { PERMISSOES } from '../../models/permissoes';
 
 @Component({
   selector: 'app-layout',
@@ -14,15 +15,18 @@ import { Usuario } from '../../models/usuario';
 
 export class LayoutComponent implements OnInit {
 
+  readonly PERMISSOES = PERMISSOES;
   props: LayoutProps = { titulo: '', subTitulo: '' }
 
   constructor(private authService: AuthService, private router: Router, private activatedRoute: ActivatedRoute){}
 
   ngOnInit(): void {
+    // console.log(this.authService.temPermissao(PERMISSOES.CATEGORIA_EXCLUIR));
+    // console.log(this.authService.getUsuarioLogado());
     this.router.events
       .pipe(
         filter( () => this.activatedRoute.firstChild !== null),
-        map( () => this.obterPropriedadesLayout())
+        map( () => this.obterPropriedadesLayout() )
       ).subscribe((props: LayoutProps) => this.props = props);
   }
 

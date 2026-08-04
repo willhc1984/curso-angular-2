@@ -26,7 +26,7 @@ export class GaleriaComponent implements OnInit{
   ngOnInit(): void {
     this.carregarLugares();
     this.categoriaService.obterTodas()
-      .subscribe(categorias => { this.categoriasFiltro = categorias; console.log(this.categoriasFiltro); });
+      .subscribe(categorias => { this.categoriasFiltro = categorias; });
     // this.lugarService.obterTodos(this.paginaAtual, this.itensPorPagina)
     //   .subscribe(lugares => {this.lugares = lugares; console.log(this.lugares); });
   }

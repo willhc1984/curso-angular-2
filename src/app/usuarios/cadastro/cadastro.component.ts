@@ -58,7 +58,11 @@ export class CadastroComponent implements OnInit{
     const usuario: Usuario = {
       nome: this.camposForm.value.nome,
       email: this.camposForm.value.email,
-      senha: this.camposForm.value.senha
+      senha: this.camposForm.value.senha,
+      permissoes: [
+        'categorias.visualizar',
+        'lugares.visualizar'
+      ]
     }
 
     this.usuarioService.salvar(usuario)
