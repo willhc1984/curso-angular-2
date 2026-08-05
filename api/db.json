@@ -106,7 +106,6 @@
       "nome": "Administrador",
       "email": "admin@email.com",
       "senha": "123",
-      "senha2": "123",
       "permissoes": [
         "categorias.visualizar",
         "categorias.criar",
@@ -119,7 +118,8 @@
         "usuarios.visualizar",
         "usuarios.criar",
         "usuarios.editar",
-        "usuarios.excluir"
+        "usuarios.excluir",
+        "papeis.criar"
       ]
     },
     {

@@ -9,6 +9,8 @@ export const permissionGuard: CanActivateFn = (route, state) => {
   
   const permissao = route.data['permissao'];
 
+  console.log(route.data['permissao']);
+
   if(auth.temPermissao(permissao)){
     return true;
   }

@@ -35,6 +35,12 @@ const routes: Routes = [
         path: 'login',
         loadChildren: () => import('../auth/auth.module').then(m => m.AuthModule),
         data: { titulo: 'Login', subTitulo: 'Realizar login no sistema' }
+      },
+      {
+        path: 'papeis',
+        canActivate: [authGuard],
+        loadChildren: () => import('../roles/roles.module').then(m => m.RolesModule),
+        data: { titulo: 'Papéis', subTitulo: 'Gerenciar papéis de usuários' }
       }
     ]
   }

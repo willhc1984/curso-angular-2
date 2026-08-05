@@ -13,6 +13,8 @@ export const PERMISSOES = {
     USUARIO_VISUALIZAR: 'usuarios.visualizar',
     USUARIO_CRIAR: 'usuarios.criar',
     USUARIO_EDITAR: 'usuarios.editar',
-    USUARIO_EXCLUIR: 'usuarios.excluir'
+    USUARIO_EXCLUIR: 'usuarios.excluir',
+    
+    PAPEL_CRIAR: 'papeis.criar',
 
 } as const;
