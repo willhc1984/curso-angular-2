@@ -145,5 +145,50 @@
       "id": "2q28Ifl"
     }
   ],
+  "roles": [
+    {
+      "nome": "administrador",
+      "descricao": "poderes ilimitados",
+      "permissoes": [
+        "categorias.visualizar",
+        "categorias.criar",
+        "categorias.editar",
+        "categorias.excluir",
+        "lugares.visualizar",
+        "lugares.criar",
+        "lugares.editar",
+        "lugares.excluir",
+        "usuarios.visualizar",
+        "usuarios.criar",
+        "usuarios.editar",
+        "usuarios.excluir",
+        "papeis.criar"
+      ],
+      "id": 1
+    },
+    {
+      "nome": "usuario",
+      "descricao": "edita categorias e lugares",
+      "permissoes": [
+        "categorias.visualizar",
+        "categorias.criar",
+        "categorias.editar",
+        "lugares.visualizar",
+        "lugares.criar",
+        "lugares.editar"
+      ],
+      "id": 2
+    },
+    {
+      "nome": "visitante",
+      "descricao": "somente visualiza",
+      "permissoes": [
+        "categorias.visualizar",
+        "lugares.visualizar",
+        "usuarios.visualizar"
+      ],
+      "id": 3
+    }
+  ],
   "$schema": "./node_modules/json-server/schema.json"
 }
