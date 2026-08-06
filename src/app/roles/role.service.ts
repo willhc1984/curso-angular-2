@@ -17,4 +17,12 @@ export class RoleService {
     return this.http.post<Role>(this.apiUrl, role);
   }
 
+  atualizar(role: Role) {
+    return this.http.put<Role>(`${this.apiUrl}/${role.id}`, role);
+  }
+
+  obterPorId(id: string) {
+    return this.http.get<Role>(`${this.apiUrl}/${id}`);
+  }  
+
 }

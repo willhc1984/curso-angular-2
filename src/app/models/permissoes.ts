@@ -16,5 +16,6 @@ export const PERMISSOES = {
     USUARIO_EXCLUIR: 'usuarios.excluir',
     
     PAPEL_CRIAR: 'papeis.criar',
+    PAPEL_EDITAR: 'papeis.editar',
 
 } as const;

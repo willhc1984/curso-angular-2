@@ -12,6 +12,14 @@ const routes: Routes = [
     data: { 
       permissao: PERMISSOES.PAPEL_CRIAR 
     }
+  },
+  {
+    path: 'editar/:id',
+    component: CadastroComponent,
+    // canActivate: [permissionGuard],
+    data: {
+      permissao: PERMISSOES.PAPEL_EDITAR
+    }
   }
   
 ];
