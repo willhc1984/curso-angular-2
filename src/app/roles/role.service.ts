@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Role } from '../models/roles';
 import { Observable } from 'rxjs';
@@ -13,7 +13,17 @@ export class RoleService {
   
   private readonly apiUrl = 'http://localhost:3000/roles';
 
+  obterTodosPaginaco(pagina: number, itensPorPagina: number) : Observable<HttpResponse<Role[]>>{
+    return this.http.get<Role[]>(
+      `${this.apiUrl}?_page=${pagina}&_limit=${itensPorPagina}`,
+      {
+        observe: 'response'
+      }
+    );
+  }
+
   salvar(role: Role) : Observable<Role> {
+    console.log('SERVICE RECEBEU:', role);
     return this.http.post<Role>(this.apiUrl, role);
   }
 

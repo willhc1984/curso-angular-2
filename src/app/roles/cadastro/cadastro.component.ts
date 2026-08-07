@@ -20,7 +20,6 @@ export class CadastroComponent implements OnInit{
   id?: string;
 
   constructor(private roleService: RoleService, private alerta: AlertaService, private router: Router, private route: ActivatedRoute){
-    console.log(this.permissoes);
     this.camposForm = new FormGroup({
       nome: new FormControl('', Validators.required),
       descricao: new FormControl('', Validators.required),
@@ -35,12 +34,11 @@ export class CadastroComponent implements OnInit{
     this.id = this.route.snapshot.paramMap.get('id') ?? undefined;
     if(this.id){
       this.carregarRoleId(this.id);
-      console.log('ID: ' + this.id);
-      console.log('Permissões: ', this.permissoes);
     }
   };
 
   salvar(){
+    console.log('FORM:', this.camposForm.value);
     this.camposForm.markAllAsTouched();
     if(this.camposForm.valid){    
       const role: Role = {
@@ -48,6 +46,8 @@ export class CadastroComponent implements OnInit{
         descricao: this.camposForm.value.descricao,
         permissoes: this.buscaPermissoes()
       };
+
+      console.log('ROLE ENVIADA:', role);
 
       this.roleService.salvar(role).subscribe({
         next: (role) => {
@@ -89,7 +89,8 @@ export class CadastroComponent implements OnInit{
           descricao: role.descricao,
           permissoes: this.permissoes.map(p => role.permissoes.includes(p.codigo))
         })
-        console.log(role);
+        //console.log(this.camposForm.value);
+        //console.log(role);
       }
     })
   }

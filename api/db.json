@@ -147,6 +147,7 @@
   ],
   "roles": [
     {
+      "id": 1,
       "nome": "administrador",
       "descricao": "poderes ilimitados",
       "permissoes": [
@@ -154,155 +155,13 @@
         "categorias.criar",
         "categorias.editar",
         "categorias.excluir",
-        "lugares.visualizar",
-        "lugares.criar",
-        "lugares.editar",
-        "lugares.excluir",
-        "usuarios.visualizar",
-        "usuarios.criar",
-        "usuarios.editar",
-        "usuarios.excluir",
-        "papeis.criar",
-        "papeis.editar"
-      ],
-      "id": 1
-    },
-    {
-      "nome": "usuario",
-      "descricao": "edita categorias e lugares",
-      "permissoes": [
-        "categorias.visualizar",
-        "categorias.criar",
-        "categorias.editar",
-        "lugares.visualizar",
-        "lugares.criar",
-        "lugares.editar"
-      ],
-      "id": 2
-    },
-    {
-      "nome": "visitante",
-      "descricao": "somente visualiza",
-      "permissoes": [
-        "categorias.visualizar",
-        "lugares.visualizar",
-        "usuarios.visualizar"
-      ],
-      "id": 3
-    },
-    {
-      "nome": "adm2",
-      "descricao": "teste",
-      "permissoes": [
-        "usuarios.excluir",
-        "papeis.criar"
-      ],
-      "id": 4
-    },
-    {
-      "nome": "Administrador",
-      "descricao": "123",
-      "permissoes": [
-        "categorias.editar"
-      ],
-      "id": 5
-    },
-    {
-      "nome": "Administrador",
-      "descricao": "123",
-      "permissoes": [
-        "categorias.editar"
-      ],
-      "id": 6
-    },
-    {
-      "nome": "usuario",
-      "descricao": "edita categorias e lugares",
-      "permissoes": [
-        "categorias.visualizar",
-        "categorias.criar",
-        "categorias.editar",
-        "lugares.visualizar",
-        "lugares.criar",
-        "lugares.editar"
-      ],
-      "id": 7
-    },
-    {
-      "id": 8,
-      "nome": "usuario 666",
-      "descricao": "edita tudo",
-      "permissoes": [
-        "categorias.visualizar",
-        "categorias.criar",
-        "categorias.editar",
-        "categorias.excluir",
-        "lugares.visualizar",
-        "lugares.criar",
-        "lugares.editar",
-        "lugares.excluir",
-        "usuarios.visualizar",
-        "usuarios.criar",
-        "usuarios.editar",
-        "usuarios.excluir",
-        "papeis.criar",
-        "papeis.editar"
+        "lugares.visualizar"
       ]
     },
     {
-      "nome": "usuario",
-      "descricao": "edita categorias e lugares",
-      "permissoes": [
-        "categorias.visualizar",
-        "categorias.criar",
-        "categorias.editar",
-        "lugares.visualizar",
-        "lugares.criar",
-        "lugares.editar"
-      ],
-      "id": 9
-    },
-    {
-      "nome": "usuario",
-      "descricao": "edita categorias e lugares",
-      "permissoes": [
-        "categorias.visualizar",
-        "categorias.criar",
-        "categorias.editar",
-        "lugares.visualizar",
-        "lugares.criar",
-        "lugares.editar"
-      ],
-      "id": 10
-    },
-    {
-      "nome": "usuario",
-      "descricao": "edita categorias e lugares",
-      "permissoes": [
-        "papeis.criar",
-        "papeis.editar"
-      ],
-      "id": 11
-    },
-    {
-      "nome": "usuario 666",
-      "descricao": "edita tudo",
-      "permissoes": [
-        "categorias.visualizar",
-        "categorias.criar",
-        "categorias.editar",
-        "lugares.visualizar",
-        "lugares.criar",
-        "lugares.editar",
-        "usuarios.visualizar",
-        "usuarios.criar",
-        "usuarios.editar"
-      ],
-      "id": 12
-    },
-    {
-      "nome": "usuario 666",
-      "descricao": "edita tudo",
+      "id": 2,
+      "nome": "teste43",
+      "descricao": "teste43",
       "permissoes": [
         "categorias.visualizar",
         "categorias.criar",
@@ -317,9 +176,41 @@
         "usuarios.editar",
         "usuarios.excluir",
         "papeis.criar",
-        "papeis.editar"
-      ],
-      "id": 13
+        "papeis.editar",
+        "papeis.visualizar"
+      ]
+    },
+    {
+      "id": 3,
+      "nome": "teste1",
+      "descricao": "teste1",
+      "permissoes": [
+        "categorias.visualizar",
+        "categorias.criar",
+        "categorias.editar",
+        "categorias.excluir"
+      ]
+    },
+    {
+      "id": 4,
+      "nome": "operador1",
+      "descricao": "operador1",
+      "permissoes": [
+        "categorias.visualizar",
+        "categorias.criar",
+        "categorias.editar"
+      ]
+    },
+    {
+      "id": 5,
+      "nome": "Editor de usuarios",
+      "descricao": "edita usuarios",
+      "permissoes": [
+        "usuarios.visualizar",
+        "usuarios.criar",
+        "usuarios.editar",
+        "usuarios.excluir"
+      ]
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

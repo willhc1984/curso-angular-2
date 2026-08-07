@@ -70,5 +70,10 @@ export const LISTA_PERMISSOES = [
         grupo: 'Role',
         descricao: 'Editar',
         codigo: PERMISSOES.PAPEL_EDITAR
+    },
+    {
+        grupo: 'Role',
+        descricao: 'Visualizar',
+        codigo: PERMISSOES.PAPEL_VISUALIZAR
     }
 ]

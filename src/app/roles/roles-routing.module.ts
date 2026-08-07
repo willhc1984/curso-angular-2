@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { permissionGuard } from '../auth/permission.guard';
 import { PERMISSOES } from '../models/permissoes';
+import { ConsultaComponent } from './consulta/consulta.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,14 @@ const routes: Routes = [
     // canActivate: [permissionGuard],
     data: {
       permissao: PERMISSOES.PAPEL_EDITAR
+    }
+  },
+  {
+    path: 'consulta',
+    component: ConsultaComponent,
+    //canActivate: [permissionGuard],
+    data: {
+      permissao: PERMISSOES.LUGAR_VISUALIZAR
     }
   }
   
