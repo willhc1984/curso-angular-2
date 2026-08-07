@@ -36,6 +36,7 @@ export class CadastroComponent implements OnInit{
     if(this.id){
       this.carregarRoleId(this.id);
       console.log('ID: ' + this.id);
+      console.log('Permissões: ', this.permissoes);
     }
   };
 
@@ -60,17 +61,24 @@ export class CadastroComponent implements OnInit{
     }      
   }
 
-  atualizar() : void{
+  atualizar() : void {
     if(this.camposForm.invalid || !this.id){
       return;
     }
 
     const role: Role = {
       id: this.id,
-      ...this.camposForm.value
+      nome: this.camposForm.value.nome,
+      descricao: this.camposForm.value.descricao,
+      permissoes: this.buscaPermissoes()
     }
 
-    console.log(role);
+    this.roleService.atualizar(role).subscribe({
+      next: () => {
+        this.alerta.sucesso('Papel atualizado!');
+        this.router.navigate(['/paginas/papeis/cadastro']);
+      }
+    });
   }
 
   carregarRoleId(id: string) : void {

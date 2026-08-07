@@ -214,6 +214,112 @@
         "categorias.editar"
       ],
       "id": 6
+    },
+    {
+      "nome": "usuario",
+      "descricao": "edita categorias e lugares",
+      "permissoes": [
+        "categorias.visualizar",
+        "categorias.criar",
+        "categorias.editar",
+        "lugares.visualizar",
+        "lugares.criar",
+        "lugares.editar"
+      ],
+      "id": 7
+    },
+    {
+      "id": 8,
+      "nome": "usuario 666",
+      "descricao": "edita tudo",
+      "permissoes": [
+        "categorias.visualizar",
+        "categorias.criar",
+        "categorias.editar",
+        "categorias.excluir",
+        "lugares.visualizar",
+        "lugares.criar",
+        "lugares.editar",
+        "lugares.excluir",
+        "usuarios.visualizar",
+        "usuarios.criar",
+        "usuarios.editar",
+        "usuarios.excluir",
+        "papeis.criar",
+        "papeis.editar"
+      ]
+    },
+    {
+      "nome": "usuario",
+      "descricao": "edita categorias e lugares",
+      "permissoes": [
+        "categorias.visualizar",
+        "categorias.criar",
+        "categorias.editar",
+        "lugares.visualizar",
+        "lugares.criar",
+        "lugares.editar"
+      ],
+      "id": 9
+    },
+    {
+      "nome": "usuario",
+      "descricao": "edita categorias e lugares",
+      "permissoes": [
+        "categorias.visualizar",
+        "categorias.criar",
+        "categorias.editar",
+        "lugares.visualizar",
+        "lugares.criar",
+        "lugares.editar"
+      ],
+      "id": 10
+    },
+    {
+      "nome": "usuario",
+      "descricao": "edita categorias e lugares",
+      "permissoes": [
+        "papeis.criar",
+        "papeis.editar"
+      ],
+      "id": 11
+    },
+    {
+      "nome": "usuario 666",
+      "descricao": "edita tudo",
+      "permissoes": [
+        "categorias.visualizar",
+        "categorias.criar",
+        "categorias.editar",
+        "lugares.visualizar",
+        "lugares.criar",
+        "lugares.editar",
+        "usuarios.visualizar",
+        "usuarios.criar",
+        "usuarios.editar"
+      ],
+      "id": 12
+    },
+    {
+      "nome": "usuario 666",
+      "descricao": "edita tudo",
+      "permissoes": [
+        "categorias.visualizar",
+        "categorias.criar",
+        "categorias.editar",
+        "categorias.excluir",
+        "lugares.visualizar",
+        "lugares.criar",
+        "lugares.editar",
+        "lugares.excluir",
+        "usuarios.visualizar",
+        "usuarios.criar",
+        "usuarios.editar",
+        "usuarios.excluir",
+        "papeis.criar",
+        "papeis.editar"
+      ],
+      "id": 13
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
