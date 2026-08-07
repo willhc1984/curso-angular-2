@@ -18,6 +18,7 @@ export const PERMISSOES = {
     PAPEL_VISUALIZAR: 'papeis.visualizar',
     PAPEL_CRIAR: 'papeis.criar',
     PAPEL_EDITAR: 'papeis.editar',
+    PAPEL_EXCLUIR: 'papeis.excluir'
 
 
 } as const;

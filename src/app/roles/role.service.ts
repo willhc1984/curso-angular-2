@@ -23,7 +23,6 @@ export class RoleService {
   }
 
   salvar(role: Role) : Observable<Role> {
-    console.log('SERVICE RECEBEU:', role);
     return this.http.post<Role>(this.apiUrl, role);
   }
 
@@ -34,5 +33,9 @@ export class RoleService {
   obterPorId(id: string) {
     return this.http.get<Role>(`${this.apiUrl}/${id}`);
   }  
+
+  excluir(id: string) : Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
 
 }

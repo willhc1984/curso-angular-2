@@ -38,7 +38,6 @@ export class CadastroComponent implements OnInit{
   };
 
   salvar(){
-    console.log('FORM:', this.camposForm.value);
     this.camposForm.markAllAsTouched();
     if(this.camposForm.valid){    
       const role: Role = {
@@ -46,8 +45,6 @@ export class CadastroComponent implements OnInit{
         descricao: this.camposForm.value.descricao,
         permissoes: this.buscaPermissoes()
       };
-
-      console.log('ROLE ENVIADA:', role);
 
       this.roleService.salvar(role).subscribe({
         next: (role) => {
@@ -76,7 +73,7 @@ export class CadastroComponent implements OnInit{
     this.roleService.atualizar(role).subscribe({
       next: () => {
         this.alerta.sucesso('Papel atualizado!');
-        this.router.navigate(['/paginas/papeis/cadastro']);
+        this.router.navigate(['/paginas/papeis/consulta']);
       }
     });
   }

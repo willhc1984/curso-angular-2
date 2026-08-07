@@ -60,12 +60,12 @@
       "id": "9sfHq0FkwJ8"
     },
     {
+      "id": "c3wK3DX-qPY",
       "nome": "Armazem Music",
       "categoria": "Clubes",
       "localizacao": "Rio de Janeiro",
       "urlFoto": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRxmUpwLKOOIavcjAlPPMDG4EkeC1HG7q2qaO4_7zocg&s=10",
-      "avaliacao": "2",
-      "id": "c3wK3DX-qPY"
+      "avaliacao": "2"
     },
     {
       "nome": "Praia da Fumaça",
@@ -119,7 +119,8 @@
         "usuarios.criar",
         "usuarios.editar",
         "usuarios.excluir",
-        "papeis.criar"
+        "papeis.criar",
+        "papeis.editar"
       ]
     },
     {
@@ -155,18 +156,6 @@
         "categorias.criar",
         "categorias.editar",
         "categorias.excluir",
-        "lugares.visualizar"
-      ]
-    },
-    {
-      "id": 2,
-      "nome": "teste43",
-      "descricao": "teste43",
-      "permissoes": [
-        "categorias.visualizar",
-        "categorias.criar",
-        "categorias.editar",
-        "categorias.excluir",
         "lugares.visualizar",
         "lugares.criar",
         "lugares.editar",
@@ -177,39 +166,8 @@
         "usuarios.excluir",
         "papeis.criar",
         "papeis.editar",
-        "papeis.visualizar"
-      ]
-    },
-    {
-      "id": 3,
-      "nome": "teste1",
-      "descricao": "teste1",
-      "permissoes": [
-        "categorias.visualizar",
-        "categorias.criar",
-        "categorias.editar",
-        "categorias.excluir"
-      ]
-    },
-    {
-      "id": 4,
-      "nome": "operador1",
-      "descricao": "operador1",
-      "permissoes": [
-        "categorias.visualizar",
-        "categorias.criar",
-        "categorias.editar"
-      ]
-    },
-    {
-      "id": 5,
-      "nome": "Editor de usuarios",
-      "descricao": "edita usuarios",
-      "permissoes": [
-        "usuarios.visualizar",
-        "usuarios.criar",
-        "usuarios.editar",
-        "usuarios.excluir"
+        "papeis.visualizar",
+        "papeis.excluir"
       ]
     }
   ],

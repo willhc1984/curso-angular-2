@@ -27,12 +27,14 @@
                     <td class="px-6 py-4">{{ role.nome }}</td>
                     <td class="px-6 py-4">{{ role.descricao }}</td>
                     <td class="px-6 py-4 text-center">
-                    <button
+                    <button *ngIf="authService.temPermissao('papeis.editar')"
+                        [routerLink]="['/paginas/papeis/editar', role.id]"
                         class="mr-2 rounded bg-blue-600 px-3 py-1 text-sm font-semibold text-white hover:bg-blue-700">
                         Editar
                     </button>
 
                     <button 
+                        (click)="excluirRole(role.id!)"
                         class="rounded bg-red-600 px-3 py-1 text-sm font-semibold text-white hover:bg-red-700">
                         Excluir
                     </button>
@@ -49,7 +51,8 @@
         </div>
 
         <!-- <a routerLink="/categorias/cadastro" class="inline-block mt-4 ml-4 rounded bg-blue-600  px-3 pu-2 text-sm font-semibold text-white hover:bg-blue-700"></a> -->
-        <button
+        <button *ngIf="authService.temPermissao('papeis.criar')"
+            routerLink="/paginas/papeis/cadastro"
             class="mt-4 ml-4 mb-4 rounded bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:bg-blue-700">
             Cadastrar
         </button>
