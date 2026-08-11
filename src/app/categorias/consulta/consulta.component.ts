@@ -3,6 +3,7 @@ import { CategoriaService } from '../categoria.service';
 import { Categoria } from '../../models/categoria';
 import { AlertaService } from '../../alerta.service';
 import { AuthService } from '../../auth/auth.service';
+import { PERMISSOES } from '../../models/permissoes';
 
 
 @Component({
@@ -47,6 +48,11 @@ export class ConsultaComponent implements OnInit{
   }
 
   excluirCategoria(id: string) : void {
+      if(!this.authService.temPermissao(PERMISSOES.CATEGORIA_EXCLUIR)){
+        this.alerta.erroModal('Não permitido','Você não pode acessar essa função.');
+        return;
+      }
+
       this.alerta.confirmar('Excluir categoria?','Essa ação não poderá ser desfeita.')
         .then(confirmado => {
           if (!confirmado) {

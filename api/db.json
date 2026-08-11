@@ -1,11 +1,6 @@
 {
   "categorias": [
     {
-      "id": "pQdhtaA2XP4",
-      "nome": "Restaurantes",
-      "descricao": "Lugares para alimentação"
-    },
-    {
       "id": "ffEDdmnnrSs",
       "nome": "Praias",
       "descricao": "Praias para tomar banho, tomar sol"
@@ -19,11 +14,6 @@
       "id": "ZnNPfVNoo8I",
       "nome": "Shopping",
       "descricao": "Shopping Center para fazer compras"
-    },
-    {
-      "id": "-SMgFVh",
-      "nome": "Botecos",
-      "descricao": "Botecos para tomar cachaça 51"
     }
   ],
   "lugares": [
@@ -60,22 +50,6 @@
       "id": "9sfHq0FkwJ8"
     },
     {
-      "id": "c3wK3DX-qPY",
-      "nome": "Armazem Music",
-      "categoria": "Clubes",
-      "localizacao": "Rio de Janeiro",
-      "urlFoto": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRxmUpwLKOOIavcjAlPPMDG4EkeC1HG7q2qaO4_7zocg&s=10",
-      "avaliacao": "2"
-    },
-    {
-      "nome": "Praia da Fumaça",
-      "categoria": "Praias",
-      "localizacao": "Pernambuco",
-      "urlFoto": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzKqlGFlrmhakn9H7f_mdgxl0o_x3fkxpW8sev8P-Rpg&s=10",
-      "avaliacao": "3",
-      "id": "PWGKltLLANg"
-    },
-    {
       "nome": "Praia dos Carneiros",
       "categoria": "Praias",
       "localizacao": "Pernambuco",
@@ -109,11 +83,11 @@
       "roleId": "1"
     },
     {
-      "nome": "mario",
-      "email": "mario@email",
+      "nome": "ana",
+      "email": "ana@email",
       "senha": "123",
-      "roleId": "4",
-      "id": "BBjL_Df"
+      "roleId": "3",
+      "id": "KHHuIuk"
     }
   ],
   "roles": [
@@ -146,21 +120,10 @@
       "descricao": "opera cadastro",
       "permissoes": [
         "categorias.visualizar",
-        "categorias.criar",
-        "categorias.editar",
-        "categorias.excluir"
+        "lugares.visualizar",
+        "usuarios.visualizar",
+        "papeis.visualizar"
       ]
-    },
-    {
-      "nome": "usuario",
-      "descricao": "usuário comum",
-      "permissoes": [
-        "categorias.visualizar",
-        "categorias.criar",
-        "categorias.editar",
-        "categorias.excluir"
-      ],
-      "id": 4
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

@@ -80,8 +80,7 @@ export class CadastroComponent implements OnInit{
           this.alerta.sucesso('Usuário cadastrado!');
         },
         error: erro => {
-          this.alerta.erro('Ocorreu um erro ao salvar.'),
-          console.log('Ocorreu um erro: ', erro);
+          this.alerta.erro('Ocorreu um erro ao salvar.');
         }
       }); 
   }
@@ -96,8 +95,6 @@ export class CadastroComponent implements OnInit{
       id: this.id,
       ...this.camposForm.value
     };
-
-    console.log(usuario);
 
     this.usuarioService.atualizar(usuario).subscribe({
       next: () => {

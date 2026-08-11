@@ -33,7 +33,8 @@ export class LoginComponent {
             'usuario', 
             JSON.stringify(usuarios[0]),
           );
-          this.router.navigate(['/'])
+          this.authService.carregarPermissoes();
+          this.router.navigate(['/']);
         }else{
           this.alerta.erroModal('Erro', 'Usuário ou senha inválidos!');
         }

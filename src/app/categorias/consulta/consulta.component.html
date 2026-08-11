@@ -23,13 +23,13 @@
                     <td class="px-6 py-4">{{ categoria.nome }}</td>
                     <td class="px-6 py-4">{{ categoria.descricao }}</td>
                     <td class="px-6 py-4 text-center">
-                    <button *ngIf="authService.temPermissao('categorias.editar')" 
+                    <button 
                         [routerLink]="['/paginas/categorias/editar', categoria.id]"
                         class="mr-2 rounded bg-blue-600 px-3 py-1 text-sm font-semibold text-white hover:bg-blue-700">
                         Editar
                     </button>
 
-                    <button *ngIf="authService.temPermissao('categorias.excluir')" 
+                    <button 
                         (click)="excluirCategoria(categoria.id)"
                         class="rounded bg-red-600 px-3 py-1 text-sm font-semibold text-white hover:bg-red-700">
                         Excluir
@@ -48,7 +48,6 @@
 
         <!-- <a routerLink="/categorias/cadastro" class="inline-block mt-4 ml-4 rounded bg-blue-600  px-3 pu-2 text-sm font-semibold text-white hover:bg-blue-700"></a> -->
         <button
-            *ngIf="authService.temPermissao('categorias.criar')"
             routerLink="/paginas/categorias/cadastro"
             class="mt-4 ml-4 mb-4 rounded bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:bg-blue-700">
             Cadastrar

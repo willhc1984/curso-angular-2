@@ -12,6 +12,7 @@ import { map } from 'rxjs/operators';
 export class AuthService {
 
   private readonly apiUrl = 'http://localhost:3000/usuarios';
+  permissoesUsuario: string[] = [];
 
   constructor(private http : HttpClient, private roleService: RoleService) { }
 
@@ -25,21 +26,33 @@ export class AuthService {
     return localStorage.getItem('usuario') != null;
   }
 
-  temPermissao(permissao: string) : Observable<Boolean> {
-    const usuario = this.getUsuarioLogado();
-
-    if(!usuario) {
-      return of(false);
-    }
-
-    return this.roleService.obterPorId(usuario.roleId).pipe(
-      map(role => role.permissoes.includes(permissao))
-    )
+  temPermissao(permissao: string) : boolean {
+    return this.permissoesUsuario.includes(permissao);
   }
 
   getUsuarioLogado() : Usuario | null {
     const usuario = localStorage.getItem('usuario');
     return usuario ? JSON.parse(usuario) : null;
+  }
+
+  carregarPermissoes() : void {
+    const usuario = this.getUsuarioLogado();
+
+    if(!usuario){
+      this.permissoesUsuario = [];
+      return;
+    }
+
+    this.roleService.obterPorId(usuario.roleId).subscribe({
+      next: role => {
+        this.permissoesUsuario = role.permissoes;
+        console.log('Permissóes carregadas:', this.permissoesUsuario);
+      },
+      error: () => {
+        console.log('Erro ao carregar as permissões.')
+        this.permissoesUsuario = [];
+      }
+    });
   }
 
   obterPermissoesUsuario() : Observable<string[]> {
@@ -50,7 +63,7 @@ export class AuthService {
     }
 
     return this.roleService.obterPorId(usuario.roleId).pipe(
-      map(role => role.permissoes)
+      map(role => role.permissoes),
     );    
   }
 
