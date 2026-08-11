@@ -25,6 +25,17 @@
                 </span>
         </div>
         <div class="mb-4">
+            <label for="papel" class="block text-gray-600 font-medium mb-2">Papel</label>
+            <select id="roleId" name="roleId" formControlName="roleId" 
+                class="w-full p-3 border border-gray-300 rounded shadow-sm focus:outline-none focus:ring focus:ring-blue-400">
+                <option [value]="">Selecione um papel</option>
+                <option *ngFor="let role of roles" [value]="role.id">{{ role.nome }}</option>
+            </select>
+            <span class="text-red-500 text-sm" *ngIf="isCampoInvalido('papel')">
+                Campo obrigatório
+            </span>
+        </div>
+        <div class="mb-4">
             <label for="senha" class="block text-gray-600 font-medium mb-2">Senha</label>
             <input type="password" id="senha" name="senha" formControlName="senha" placeholder="Senha forte" 
                 class="w-full p-3 border border-gray-300 rounded shadow-sm focus:ring-blue-400"

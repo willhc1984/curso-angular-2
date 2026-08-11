@@ -1,6 +1,7 @@
 import { CanActivateFn, Router } from '@angular/router';
 import { AuthService } from './auth.service';
 import { inject } from '@angular/core';
+import { map } from 'rxjs/operators';
 
 export const permissionGuard: CanActivateFn = (route, state) => {
 
@@ -9,11 +10,13 @@ export const permissionGuard: CanActivateFn = (route, state) => {
   
   const permissao = route.data['permissao'];
 
-  if(auth.temPermissao(permissao)){
-    return true;
-  }
+  return auth.temPermissao(permissao).pipe(
+    map(permitido => {
+      if(permitido){
+        return true;
+      }
 
-  router.navigate(['/']);  
-  return false;
-
+      return router.createUrlTree(['/paginas']);
+    })
+  )
 };

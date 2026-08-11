@@ -4,6 +4,8 @@ import { Usuario } from '../../models/usuario';
 import { UsuariosService } from '../usuarios.service';
 import { AlertaService } from '../../alerta.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { RoleService } from '../../roles/role.service';
+import { Role } from '../../models/roles';
 
 
 @Component({
@@ -15,13 +17,16 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 export class CadastroComponent implements OnInit{
 
+  roles: Role[] = [];
   camposForm: FormGroup;
   id?: string;
 
-  constructor(private usuarioService: UsuariosService, private alerta: AlertaService, private router: Router, private route: ActivatedRoute){
+  constructor(private usuarioService: UsuariosService, private alerta: AlertaService, private router: Router, 
+              private route: ActivatedRoute, private roleService: RoleService){
     this.camposForm = new FormGroup({
       nome: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
+      roleId: new FormControl('', Validators.required),
       senha: new FormControl('', Validators.required),
       senha2: new FormControl('', Validators.required)
     },{
@@ -33,8 +38,13 @@ export class CadastroComponent implements OnInit{
     this.id = this.route.snapshot.paramMap.get('id') ?? undefined;
     if(this.id){
       this.carregarUsuarioId(this.id);
-      console.log('ID: ', this.id);
     }
+    this.roleService.obterTodos().subscribe({
+      next: (listaRoles => {
+        this.roles = listaRoles,
+        console.log(this.roles)
+      })
+    });
   }
 
   carregarUsuarioId(id: string) : void {
@@ -59,10 +69,7 @@ export class CadastroComponent implements OnInit{
       nome: this.camposForm.value.nome,
       email: this.camposForm.value.email,
       senha: this.camposForm.value.senha,
-      permissoes: [
-        'categorias.visualizar',
-        'lugares.visualizar'
-      ]
+      roleId: this.camposForm.value.roleId
     }
 
     this.usuarioService.salvar(usuario)

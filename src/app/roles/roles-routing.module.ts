@@ -17,7 +17,7 @@ const routes: Routes = [
   {
     path: 'editar/:id',
     component: CadastroComponent,
-    // canActivate: [permissionGuard],
+    canActivate: [permissionGuard],
     data: {
       permissao: PERMISSOES.PAPEL_EDITAR
     }
@@ -25,7 +25,7 @@ const routes: Routes = [
   {
     path: 'consulta',
     component: ConsultaComponent,
-    //canActivate: [permissionGuard],
+    canActivate: [permissionGuard],
     data: {
       permissao: PERMISSOES.LUGAR_VISUALIZAR
     }
