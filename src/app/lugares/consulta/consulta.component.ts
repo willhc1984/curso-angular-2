@@ -23,7 +23,7 @@ export class ConsultaComponent implements OnInit{
 
   constructor(private lugarService: LugarService, private alerta: AlertaService, 
               public categoriaService: CategoriaService, public authService: AuthService){}
-              
+
   ngOnInit(): void {
     this.carregarLugares();
     this.categoriaService.obterTodas().subscribe({
@@ -79,7 +79,7 @@ export class ConsultaComponent implements OnInit{
     const categoria = this.categorias.find(
       categoria => categoria.id === categoriaId
     );
-    return categoria?.nome ?? 'Categoria não encontrada';
+    return categoria?.nome ?? 'Categoria não encontrada.';
   }
 
   proximaPagina() : void {

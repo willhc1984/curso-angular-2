@@ -34,15 +34,15 @@ export class CadastroComponent implements OnInit{
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id') ?? undefined;
 
-    if(this.id){
-      this.carregarLugarId(this.id);
-    }
-
     this.categoriaService.obterTodas().subscribe({
       next: (listaCategorias) => {
         this.categorias = listaCategorias
       }      
     })
+
+    if(this.id){
+      this.carregarLugarId(this.id);
+    }
   }
 
   salvar(){
@@ -85,11 +85,12 @@ export class CadastroComponent implements OnInit{
       next: lugar => {
         this.camposForm.patchValue({
           nome: lugar.nome,
-          categoria: lugar.categoriaId,
+          categoriaId: lugar.categoriaId,
           localizacao: lugar.localizacao,
           urlFoto: lugar.urlFoto,
           avaliacao: lugar.avaliacao
         })
+        console.log(lugar);
       }
     });
   }
