@@ -14,12 +14,12 @@
 
         <div class="mb-4">
             <label for="nome" class="block text-gray-600 font-medium mb-2">Categoria</label>
-            <select id="categoria" name="categoria" formControlName="categoria" 
+            <select id="categoriaId" name="categoriaId" formControlName="categoriaId" 
                 class="w-full p-3 border border-gray-300 rounded shadow-sm focus:outline-none focus:ring focus:ring-blue-400">
-                <option [value]="">Selecione uma categoria</option>
-                <option *ngFor="let categoria of categorias" [value]="categoria.nome">{{ categoria.nome }}</option>
+                <option value="" disabled>Selecione uma categoria</option>
+                <option *ngFor="let categoria of categorias" [value]="categoria.id">{{ categoria.nome }}</option>
             </select>
-            <span class="text-red-500 text-sm" *ngIf="isCampoInvalido('categoria')">
+            <span class="text-red-500 text-sm" *ngIf="isCampoInvalido('categoriaId')">
                 Campo obrigatório
             </span>
         </div>

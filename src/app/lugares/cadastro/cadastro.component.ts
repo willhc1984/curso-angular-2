@@ -24,7 +24,7 @@ export class CadastroComponent implements OnInit{
               private alerta: AlertaService, private route: ActivatedRoute, private router: Router){
     this.camposForm = new FormGroup({
       nome: new FormControl('', Validators.required),
-      categoria: new FormControl('', Validators.required),
+      categoriaId: new FormControl('', Validators.required),
       localizacao: new FormControl('', Validators.required),
       urlFoto: new FormControl('', Validators.required),
       avaliacao: new FormControl('', Validators.required)
@@ -36,12 +36,10 @@ export class CadastroComponent implements OnInit{
 
     if(this.id){
       this.carregarLugarId(this.id);
-      console.log('ID: ', this.id);
     }
 
     this.categoriaService.obterTodas().subscribe({
       next: (listaCategorias) => {
-        console.log(this.id);
         this.categorias = listaCategorias
       }      
     })
@@ -53,11 +51,10 @@ export class CadastroComponent implements OnInit{
       this.lugarService.salvar(this.camposForm.value)
         .subscribe({
           next: (lugar) => {
-            console.log("Cadastrado com sucesso.", lugar);
             this.camposForm.reset();
             this.alerta.sucesso('Lugar cadastrado!');
           },
-          error: erro => console.log('Ocorreu um erro: ', erro)
+          error: () => this.alerta.erro('Erro ao salvar.')
         });
     }
   }
@@ -88,7 +85,7 @@ export class CadastroComponent implements OnInit{
       next: lugar => {
         this.camposForm.patchValue({
           nome: lugar.nome,
-          categoria: lugar.categoria,
+          categoria: lugar.categoriaId,
           localizacao: lugar.localizacao,
           urlFoto: lugar.urlFoto,
           avaliacao: lugar.avaliacao

@@ -27,7 +27,7 @@
             <tbody class="divide-y divide-gray-200 bg-white">
                 <tr class="hover:bg-gray-100" *ngFor="let lugar of lugares">
                     <td class="px-6 py-4">{{ lugar.nome }}</td>
-                    <td class="px-6 py-4">{{ lugar.categoria }}</td>
+                    <td class="px-6 py-4">{{ buscarNomeCategoria(lugar.categoriaId) }}</td>
                     <td class="px-6 py-4 max-w-xs truncate">{{ lugar.localizacao }}</td>                    
                     <td class="px-6 py-4">{{ lugar.avaliacao }}</td>
                     <td class="px-6 py-4 text-center">

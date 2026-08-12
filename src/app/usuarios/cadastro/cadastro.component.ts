@@ -53,6 +53,8 @@ export class CadastroComponent implements OnInit{
         this.camposForm.patchValue({
           nome: usuario.nome,
           email: usuario.email,
+          roleId: usuario.roleId,
+          senha: usuario.senha
         });
       }
     });

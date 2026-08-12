@@ -63,8 +63,6 @@ export class CadastroComponent implements OnInit{
       ...this.camposForm.value
     };
 
-    console.log(categoria);
-
     this.service.atualizar(categoria).subscribe({
       next: () => {
         this.alerta.sucesso('Categoria atualizada!');

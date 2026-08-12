@@ -3,6 +3,8 @@ import { LugarService } from '../lugar.service';
 import { Lugar } from '../../models/lugar';
 import { AlertaService } from '../../alerta.service';
 import { AuthService } from '../../auth/auth.service';
+import { Categoria } from '../../models/categoria';
+import { CategoriaService } from '../../categorias/categoria.service';
 
 @Component({
   selector: 'app-consulta',
@@ -14,14 +16,22 @@ import { AuthService } from '../../auth/auth.service';
 export class ConsultaComponent implements OnInit{
 
   lugares: Lugar[] = [];
+  categorias: Categoria[] = [];
   paginaAtual: number = 1;
   itensPorPagina: number = 5;
   totalPaginas: number = 0;
 
-  constructor(private lugarService: LugarService, private alerta: AlertaService, public authService: AuthService){}
-
+  constructor(private lugarService: LugarService, private alerta: AlertaService, 
+              public categoriaService: CategoriaService, public authService: AuthService){}
+              
   ngOnInit(): void {
     this.carregarLugares();
+    this.categoriaService.obterTodas().subscribe({
+      next: (listaCategorias) => {
+        this.categorias = listaCategorias,
+        console.log(this.categorias)
+      }      
+    })
   }
 
   carregarLugares() : void {
@@ -37,10 +47,6 @@ export class ConsultaComponent implements OnInit{
           this.totalPaginas = Math.ceil(
             totalRegistros / this.itensPorPagina
           )
-          // console.log(response.body);
-          // console.log(response.headers);
-          // console.log(response.status);
-          // console.log(response.url);
         }
     });
   }
@@ -67,6 +73,13 @@ export class ConsultaComponent implements OnInit{
           }
         })
      })  
+  }
+
+  buscarNomeCategoria(categoriaId: string): string {
+    const categoria = this.categorias.find(
+      categoria => categoria.id === categoriaId
+    );
+    return categoria?.nome ?? 'Categoria não encontrada';
   }
 
   proximaPagina() : void {

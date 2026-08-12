@@ -1,7 +1,6 @@
 import { CanActivateFn, Router } from '@angular/router';
 import { AuthService } from './auth.service';
 import { inject } from '@angular/core';
-import { map } from 'rxjs/operators';
 import { AlertaService } from '../alerta.service';
 
 export const permissionGuard: CanActivateFn = (route, state) => {
@@ -18,6 +17,7 @@ export const permissionGuard: CanActivateFn = (route, state) => {
 
   alerta.erroModal('Não permitido','Você não pode acessar essa função.');
 
-  return router.createUrlTree(['/paginas']);
+  // return router.createUrlTree(['/paginas']);
+  return false;
 
 };
