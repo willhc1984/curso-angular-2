@@ -26,11 +26,16 @@ export class AuthService {
     return localStorage.getItem('usuario') != null;
   }
 
+  getUsuarioLogado() : Usuario | null {
+    const usuario = localStorage.getItem('usuario');
+    return usuario ? JSON.parse(usuario) : null;
+  }
+
   temPermissao(permissao: string) : Observable<boolean> {
     const usuario = this.getUsuarioLogado();
     
     if(!usuario || !usuario.roleId){
-      return of(false)
+      return of(false);
     }
 
     return this.roleService.obterPorId(usuario.roleId).pipe(
@@ -38,9 +43,8 @@ export class AuthService {
     )
   }
 
-  getUsuarioLogado() : Usuario | null {
-    const usuario = localStorage.getItem('usuario');
-    return usuario ? JSON.parse(usuario) : null;
+  verificaPermissao(permissao: string): boolean {
+    return this.permissoesUsuario.includes(permissao);
   }
 
   carregarPermissoes() : void {
