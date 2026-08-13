@@ -19,7 +19,7 @@ export class GaleriaComponent implements OnInit{
   categoriaFiltro: string = '';
   paginaAtual: number = 1;
   itensPorPagina: number = 6;
-  totalPaginas: number = 0
+  totalPaginas: number = 0;
 
   constructor(private lugarService: LugarService, private categoriaService: CategoriaService){}
 
@@ -50,6 +50,13 @@ export class GaleriaComponent implements OnInit{
           // console.log(response.url);
         }
     });
+  }
+
+  buscarNomeCategoria(categoriaId: string){
+    const categoria = this.categoriasFiltro.find(
+      categoria => categoria.id === categoriaId
+    );
+    return categoria?.nome ?? 'Categoria não encontrada.';
   }
 
   getTotalEstrelas(lugar: Lugar) : string {

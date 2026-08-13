@@ -23,7 +23,6 @@ export const permissionGuard: CanActivateFn = (route, state) => {
   )
 
 
-
   // if(auth.temPermissao(permissao)){
   //   return true;
   // }
