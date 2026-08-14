@@ -32,7 +32,8 @@ export class LoginComponent {
           localStorage.setItem(
             'usuario', 
             JSON.stringify(usuarios[0]),
-          );
+          ),
+          localStorage.setItem('token', 'token-de-teste');
           this.authService.carregarPermissoes();
           this.router.navigate(['/']);
         }else{
