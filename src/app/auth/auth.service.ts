@@ -4,6 +4,7 @@ import { Usuario } from '../models/usuario';
 import { Observable, of } from 'rxjs';
 import { RoleService } from '../roles/role.service';
 import { map } from 'rxjs';
+import { LoginResponse } from '../dto/auth/login-response';
 
 @Injectable({
   providedIn: 'root'
@@ -11,19 +12,23 @@ import { map } from 'rxjs';
 
 export class AuthService {
 
-  private readonly apiUrl = 'http://localhost:3000/usuarios';
+  private readonly apiUrl = 'http://localhost:8080';
   permissoesUsuario: string[] = [];
 
-  constructor(private http : HttpClient, private roleService: RoleService) {}
+  constructor(private http: HttpClient, private roleService: RoleService) {}
 
-  login(email: string, senha: string){
-    return this.http.get<Usuario[]>(
-      `${this.apiUrl}?email=${email}&senha=${senha}`
+  login(email: string, senha: string) : Observable<LoginResponse>{
+    return this.http.post<LoginResponse>(
+      `${this.apiUrl}/login`,
+      {
+        email: email,
+        senha: senha
+      }
     );
   }
 
   estaLogado() : boolean {
-    return localStorage.getItem('usuario') != null;
+    return localStorage.getItem('token') != null;
   }
 
   getUsuarioLogado() : Usuario | null {
@@ -79,7 +84,8 @@ export class AuthService {
   }
 
   logout(): void {
-    return localStorage.removeItem('usuario');
+    localStorage.removeItem('token');
+    localStorage.removeItem('usuario');
   }
 
 }

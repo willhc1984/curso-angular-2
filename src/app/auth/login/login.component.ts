@@ -23,24 +23,34 @@ export class LoginComponent {
   }
 
   login() : void {
+    this.camposForm.markAllAsTouched();
+
+    if(this.camposForm.invalid){
+      return;
+    }
+
     this.authService.login(
       this.camposForm.value.email,
       this.camposForm.value.senha
     ).subscribe({
-      next: usuarios => {
-        if(usuarios.length > 0){
-          localStorage.setItem(
-            'usuario', 
-            JSON.stringify(usuarios[0]),
-          ),
-          localStorage.setItem('token', 'token-de-teste');
-          this.authService.carregarPermissoes();
-          this.router.navigate(['/']);
+      next: resposta => {
+        localStorage.setItem('token', resposta.token);
+        this.authService.carregarPermissoes();
+        this.router.navigate(['/']);
+      },
+      error: erro => {
+        if(erro.status === 401){
+          this.alerta.erroModal(
+            'Erro',
+            'Usuário ou senha inválidos.'
+          );
         }else{
-          this.alerta.erroModal('Erro', 'Usuário ou senha inválidos!');
+          this.alerta.erroModal(
+            'Erro',
+            'Não foi possivel realizar o login.'
+          );
         }
       }
     })
   }
-
 }
