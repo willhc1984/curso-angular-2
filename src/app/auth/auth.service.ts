@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs';
 import { RoleService } from '../roles/role.service';
 import { map } from 'rxjs';
 import { LoginResponse } from '../dto/auth/login-response';
+import { UsuarioMeResponse } from '../dto/auth/usuario-me-response';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,8 @@ import { LoginResponse } from '../dto/auth/login-response';
 export class AuthService {
 
   private readonly apiUrl = 'http://localhost:8080';
+  private usuarioLogado: UsuarioMeResponse | null = null;
+
   permissoesUsuario: string[] = [];
 
   constructor(private http: HttpClient, private roleService: RoleService) {}
@@ -27,65 +30,32 @@ export class AuthService {
     );
   }
 
-  estaLogado() : boolean {
+  obterUsuarioLogado(): Observable<UsuarioMeResponse> {
+    return this.http.get<UsuarioMeResponse>(
+      `${this.apiUrl}/me`
+    );
+  }
+
+  definirUsuarioLogado(usuario: UsuarioMeResponse): void {
+    this.usuarioLogado = usuario;
+  }
+
+  getUsuarioLogado() : UsuarioMeResponse | null {
+    return this.usuarioLogado;
+  }
+
+  estaLogado(): boolean {
     return localStorage.getItem('token') != null;
   }
 
-  getUsuarioLogado() : Usuario | null {
-    const usuario = localStorage.getItem('usuario');
-    return usuario ? JSON.parse(usuario) : null;
-  }
-
-  temPermissao(permissao: string) : Observable<boolean> {
-    const usuario = this.getUsuarioLogado();
-    
-    if(!usuario || !usuario.roleId){
-      return of(false);
-    }
-
-    return this.roleService.obterPorId(usuario.roleId).pipe(
-      map(role => role.permissoes.includes(permissao))
-    )
-  }
-
-  verificaPermissao(permissao: string): boolean {
-    return this.permissoesUsuario.includes(permissao);
-  }
-
-  carregarPermissoes() : void {
-    const usuario = this.getUsuarioLogado();
-
-    if(!usuario || !usuario.roleId){
-      this.permissoesUsuario = [];
-      return;
-    }
-
-    this.roleService.obterPorId(usuario.roleId).subscribe({
-      next: role => {
-        this.permissoesUsuario = role.permissoes;
-        console.log(this.permissoesUsuario);
-      },
-      error: () => {
-        this.permissoesUsuario = [];
-      }
-    });
-  }
-
-  obterPermissoesUsuario() : Observable<string[]> {
-    const usuario = this.getUsuarioLogado();
-    
-    if(!usuario){
-      return of([]);
-    }
-
-    return this.roleService.obterPorId(usuario.roleId).pipe(
-      map(role => role.permissoes),
-    );    
+  temPermissao(permissao: string) : boolean {
+    return this.usuarioLogado?.permissoes.includes(permissao) ?? false;
   }
 
   logout(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('usuario');
+    this.usuarioLogado = null;
   }
 
 }
