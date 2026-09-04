@@ -31,9 +31,8 @@ export class LoginComponent {
     this.authService.login(this.camposForm.value.email, this.camposForm.value.senha).subscribe({
         next: resposta => {
           localStorage.setItem('token', resposta.token);
-          this.authService.obterUsuarioLogado().subscribe({
-            next: usuario => {
-              this.authService.definirUsuarioLogado(usuario);
+          this.authService.carregarUsuario().subscribe({
+            next: () => {
               this.router.navigate(['/']);
             },
             error: erro => {
@@ -41,7 +40,14 @@ export class LoginComponent {
               this.authService.logout();
               this.alerta.erroModal('Erro', 'Não foi possível obter os dados do usuário.');
             }
-          })
+          });
+        },
+        error: erro => {
+          if(erro.status === 401){
+            this.alerta.erroModal('Erro:', 'Usuário ou senha inválidos');
+          }else{
+            this.alerta.erroModal('Erro:', 'Não foi possível realizar o login');
+          }
         }
       })
     }

@@ -1,24 +1,29 @@
 export const PERMISSOES = {
 
-    CATEGORIA_VISUALIZAR: 'categorias.visualizar',
-    CATEGORIA_CRIAR: 'categorias.criar',
-    CATEGORIA_EDITAR: 'categorias.editar',
-    CATEGORIA_EXCLUIR: 'categorias.excluir',
+    CATEGORIA_VISUALIZAR: 'categoria.visualizar',
+    CATEGORIA_CRIAR: 'categoria.criar',
+    CATEGORIA_EDITAR: 'categoria.editar',
+    CATEGORIA_EXCLUIR: 'categoria.excluir',
 
-    LUGAR_VISUALIZAR: 'lugares.visualizar',
-    LUGAR_CRIAR: 'lugares.criar',
-    LUGAR_EDITAR: 'lugares.editar',
-    LUGAR_EXCLUIR: 'lugares.excluir',
+    LUGAR_VISUALIZAR: 'lugar.visualizar',
+    LUGAR_CRIAR: 'lugar.criar',
+    LUGAR_EDITAR: 'lugar.editar',
+    LUGAR_EXCLUIR: 'lugar.excluir',
 
-    USUARIO_VISUALIZAR: 'usuarios.visualizar',
-    USUARIO_CRIAR: 'usuarios.criar',
-    USUARIO_EDITAR: 'usuarios.editar',
-    USUARIO_EXCLUIR: 'usuarios.excluir',
+    USUARIO_VISUALIZAR: 'usuario.visualizar',
+    USUARIO_CRIAR: 'usuario.criar',
+    USUARIO_EDITAR: 'usuario.editar',
+    USUARIO_EXCLUIR: 'usuario.excluir',
     
-    PAPEL_VISUALIZAR: 'papeis.visualizar',
-    PAPEL_CRIAR: 'papeis.criar',
-    PAPEL_EDITAR: 'papeis.editar',
-    PAPEL_EXCLUIR: 'papeis.excluir'
+    PAPEL_VISUALIZAR: 'papel.visualizar',
+    PAPEL_CRIAR: 'papel.criar',
+    PAPEL_EDITAR: 'papel.editar',
+    PAPEL_EXCLUIR: 'papel.excluir',
+
+    PERMISSAO_VISUALIZAR: 'permissao.visualizar',
+    PERMISSAO_CRIAR: 'pemrissao.criar',
+    PERMISSAO_EDITAR: 'permissao.editar',
+    PERMISSAO_EXCLUIR: 'permissao.excluir'
 
 
 } as const;

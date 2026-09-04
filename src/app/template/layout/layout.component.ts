@@ -5,6 +5,7 @@ import { LayoutProps } from '../layoutprops';
 import { filter, map } from 'rxjs';
 import { Usuario } from '../../models/usuario';
 import { PERMISSOES } from '../../models/permissoes';
+import { UsuarioMeResponse } from '../../dto/auth/usuario-me-response';
 
 @Component({
   selector: 'app-layout',
@@ -46,7 +47,7 @@ export class LayoutComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
-  get usuarioLogado() : Usuario | null {
+  get usuarioLogado() : UsuarioMeResponse | null {
     return this.authService.getUsuarioLogado();
   }
 

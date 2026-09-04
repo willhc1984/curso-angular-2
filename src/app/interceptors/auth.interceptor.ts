@@ -14,8 +14,5 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
     }
   });
 
-  console.log("Requisição interceptada: ", request.url);
-  console.log("Authorization: ", request.headers.get('Authorization'));
-
   return next(request);
 };

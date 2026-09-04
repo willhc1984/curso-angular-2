@@ -1,9 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Usuario } from '../models/usuario';
-import { Observable, of } from 'rxjs';
-import { RoleService } from '../roles/role.service';
-import { map } from 'rxjs';
+import { Observable, of, tap } from 'rxjs';
 import { LoginResponse } from '../dto/auth/login-response';
 import { UsuarioMeResponse } from '../dto/auth/usuario-me-response';
 
@@ -18,7 +15,7 @@ export class AuthService {
 
   permissoesUsuario: string[] = [];
 
-  constructor(private http: HttpClient, private roleService: RoleService) {}
+  constructor(private http: HttpClient) {}
 
   login(email: string, senha: string) : Observable<LoginResponse>{
     return this.http.post<LoginResponse>(
@@ -30,14 +27,22 @@ export class AuthService {
     );
   }
 
-  obterUsuarioLogado(): Observable<UsuarioMeResponse> {
-    return this.http.get<UsuarioMeResponse>(
-      `${this.apiUrl}/me`
-    );
+  carregarUsuario(): Observable<UsuarioMeResponse>{
+    return this.obterUsuarioLogado().pipe(
+      tap(usuario => {
+        this.usuarioLogado = usuario
+      })
+    )
   }
 
   definirUsuarioLogado(usuario: UsuarioMeResponse): void {
     this.usuarioLogado = usuario;
+  }
+
+  obterUsuarioLogado(): Observable<UsuarioMeResponse> {
+    return this.http.get<UsuarioMeResponse>(
+      `${this.apiUrl}/me`
+    );
   }
 
   getUsuarioLogado() : UsuarioMeResponse | null {
