@@ -27,11 +27,11 @@ export class LugarService {
     );
   }
 
-  excluir(id: string) : Observable<void>{
+  excluir(id: number) : Observable<void>{
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
-  obterPorId(id: string) {
+  obterPorId(id: number) {
     return this.http.get<Lugar>(`${this.apiUrl}/${id}`);
   }
 

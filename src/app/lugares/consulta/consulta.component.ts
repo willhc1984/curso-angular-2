@@ -51,7 +51,7 @@ export class ConsultaComponent implements OnInit{
     });
   }
 
-  excluirLugar(id: string) : void {
+  excluirLugar(id: number) : void {
     this.alerta.confirmar('Excluir lugar?', 'Essa ação não poderá ser desfeita.')
       .then(confirmado => {
         if(!confirmado){
@@ -75,7 +75,7 @@ export class ConsultaComponent implements OnInit{
      })  
   }
 
-  buscarNomeCategoria(categoriaId: string): string {
+  buscarNomeCategoria(categoriaId: number): string {
     const categoria = this.categorias.find(
       categoria => categoria.id === categoriaId
     );

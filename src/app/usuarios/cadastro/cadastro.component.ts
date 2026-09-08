@@ -19,7 +19,7 @@ export class CadastroComponent implements OnInit{
 
   roles: Role[] = [];
   camposForm: FormGroup;
-  id?: string;
+  id?: number;
 
   constructor(private usuarioService: UsuariosService, private alerta: AlertaService, private router: Router, 
               private route: ActivatedRoute, private roleService: RoleService){
@@ -35,10 +35,13 @@ export class CadastroComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.paramMap.get('id') ?? undefined;
+    const id = this.route.snapshot.paramMap.get('id') ?? undefined;
+    this.id = id ? Number(id) : undefined;
+
     if(this.id){
       this.carregarUsuarioId(this.id);
     }
+    
     this.roleService.obterTodos().subscribe({
       next: (listaRoles => {
         this.roles = listaRoles,
@@ -47,7 +50,7 @@ export class CadastroComponent implements OnInit{
     });
   }
 
-  carregarUsuarioId(id: string) : void {
+  carregarUsuarioId(id: number) : void {
     this.usuarioService.obterPorId(id).subscribe({
       next: usuario => {
         this.camposForm.patchValue({

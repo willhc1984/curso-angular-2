@@ -52,7 +52,7 @@ export class GaleriaComponent implements OnInit{
     });
   }
 
-  buscarNomeCategoria(categoriaId: string){
+  buscarNomeCategoria(categoriaId: number){
     const categoria = this.categoriasFiltro.find(
       categoria => categoria.id === categoriaId
     );

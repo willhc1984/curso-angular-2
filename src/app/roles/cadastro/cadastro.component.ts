@@ -17,7 +17,7 @@ export class CadastroComponent implements OnInit{
 
   permissoes = LISTA_PERMISSOES;
   camposForm: FormGroup;
-  id?: string;
+  id?: number;
 
   constructor(private roleService: RoleService, private alerta: AlertaService, private router: Router, private route: ActivatedRoute){
     this.camposForm = new FormGroup({
@@ -31,7 +31,9 @@ export class CadastroComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.paramMap.get('id') ?? undefined;
+    const id = this.route.snapshot.paramMap.get('id') ?? undefined;
+    this.id = id ? Number(id) : undefined;
+    
     if(this.id){
       this.carregarRoleId(this.id);
     }
@@ -78,7 +80,7 @@ export class CadastroComponent implements OnInit{
     });
   }
 
-  carregarRoleId(id: string) : void {
+  carregarRoleId(id: number) : void {
     this.roleService.obterPorId(id).subscribe({
       next: role => {
         this.camposForm.patchValue({

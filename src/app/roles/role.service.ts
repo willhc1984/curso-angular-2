@@ -11,17 +11,17 @@ export class RoleService {
 
   constructor(private http: HttpClient) { }
   
-  private readonly apiUrl = 'http://localhost:3000/roles';
+  private readonly apiUrl = 'http://localhost:8080/roles';
 
   obterTodos() : Observable<Role[]>{
     return this.http.get<Role[]>(this.apiUrl);
   }
 
-  obterPorId(id: string) {
+  obterPorId(id: number) {
     return this.http.get<Role>(`${this.apiUrl}/${id}`);
   }  
 
-  obterTodosPaginaco(pagina: number, itensPorPagina: number) : Observable<HttpResponse<Role[]>>{
+  obterTodosPaginacao(pagina: number, itensPorPagina: number) : Observable<HttpResponse<Role[]>>{
     return this.http.get<Role[]>(
       `${this.apiUrl}?_page=${pagina}&_limit=${itensPorPagina}`,
       {
@@ -38,7 +38,7 @@ export class RoleService {
     return this.http.put<Role>(`${this.apiUrl}/${role.id}`, role);
   }
 
-  excluir(id: string) : Observable<void> {
+  excluir(id: number) : Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 

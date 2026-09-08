@@ -40,7 +40,7 @@ export class ConsultaComponent implements OnInit{
       });
   }
 
-  excluirUsuario(id: string) : void {
+  excluirUsuario(id: number) : void {
     this.alerta.confirmar('Excluir usuário?', 'Esta ação não poderá ser desfeita.')
       .then(confirmado => {
         if(!confirmado){ 

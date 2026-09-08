@@ -25,7 +25,7 @@ export class ConsultaComponent implements OnInit {
   }
 
   carregarRolesPaginacao() : void {
-    this.roleService.obterTodosPaginaco(this.paginaAtual, this.itensPorPagina)
+    this.roleService.obterTodosPaginacao(this.paginaAtual, this.itensPorPagina)
       .subscribe({
         next: response => {
           this.roles = response.body ?? [];
@@ -33,16 +33,14 @@ export class ConsultaComponent implements OnInit {
             response.headers.get('X-Total-Count')
           );
 
-          console.log(this.roles);
-
           this.totalPaginas = Math.ceil(
             totalRegistros / this.itensPorPagina
           )
         }
-      })
+    });
   }
 
-  excluirRole(id: string) : void {
+  excluirRole(id: number) : void {
     this.alerta.confirmar('Excluir papel?', 'Essa ação não poderá ser desfeita.')
       .then(confirmado => {
         if(!confirmado){
@@ -57,7 +55,7 @@ export class ConsultaComponent implements OnInit {
             this.alerta.sucesso('Papel excluido!');
           },
           error: () => {
-            this.alerta.erro('Erro ao excluir papel');
+            this.alerta.erroModal('Erro ao excluir papel', 'Usuários ou permissões podem estar vinculados.');
           }
         });
       })

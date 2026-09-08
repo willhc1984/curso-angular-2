@@ -47,7 +47,7 @@ export class ConsultaComponent implements OnInit{
     });
   }
 
-  excluirCategoria(id: string) : void {
+  excluirCategoria(id: number) : void {
       if(!this.authService.temPermissao(PERMISSOES.CATEGORIA_EXCLUIR)){
         this.alerta.erroModal('Não permitido','Você não pode acessar essa função.');
         return;
@@ -68,9 +68,7 @@ export class ConsultaComponent implements OnInit{
           );
         },
         error: () => {
-          this.alerta.erro(
-            'Erro ao excluir categoria.'
-          );
+          this.alerta.erroModal('Erro ao excluir categoria.', 'Categoria possui lugares vinculados.');
         }
       });
     });

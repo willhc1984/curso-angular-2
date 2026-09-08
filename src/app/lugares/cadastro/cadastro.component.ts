@@ -18,7 +18,7 @@ export class CadastroComponent implements OnInit{
 
   camposForm: FormGroup;
   categorias: Categoria[] = [];
-  id?: string;
+  id?: number;
   
   constructor(private categoriaService: CategoriaService, private lugarService: LugarService,
               private alerta: AlertaService, private route: ActivatedRoute, private router: Router){
@@ -32,7 +32,8 @@ export class CadastroComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.paramMap.get('id') ?? undefined;
+    const id = this.route.snapshot.paramMap.get('id') ?? undefined;
+    this.id = id ? Number(id) : undefined;
 
     this.categoriaService.obterTodas().subscribe({
       next: (listaCategorias) => {
@@ -80,7 +81,7 @@ export class CadastroComponent implements OnInit{
     });
   }
 
-  carregarLugarId(id: string) : void {
+  carregarLugarId(id: number) : void {
     this.lugarService.obterPorId(id).subscribe({
       next: lugar => {
         this.camposForm.patchValue({
