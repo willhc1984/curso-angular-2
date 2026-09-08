@@ -41,6 +41,12 @@ const routes: Routes = [
         canActivate: [authGuard],
         loadChildren: () => import('../roles/roles.module').then(m => m.RolesModule),
         data: { titulo: 'Papéis', subTitulo: 'Gerenciar papéis de usuários' }
+      },
+      {
+        path: 'permissoes',
+        canActivate: [authGuard],
+        loadChildren: () => import('../permissoes/permissoes.module').then(m => m.PermissoesModule),
+        data: { titulo: 'Permissões do sistema', subTitulo: 'Gerenciar permissões do sistema' }
       }
     ]
   }

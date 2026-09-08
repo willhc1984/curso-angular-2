@@ -21,9 +21,8 @@ export const PERMISSOES = {
     PAPEL_EXCLUIR: 'papel.excluir',
 
     PERMISSAO_VISUALIZAR: 'permissao.visualizar',
-    PERMISSAO_CRIAR: 'pemrissao.criar',
+    PERMISSAO_CRIAR: 'permissao.criar',
     PERMISSAO_EDITAR: 'permissao.editar',
     PERMISSAO_EXCLUIR: 'permissao.excluir'
-
 
 } as const;
