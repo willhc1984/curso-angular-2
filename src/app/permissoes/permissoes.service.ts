@@ -24,12 +24,20 @@ export class PermissoesService {
     );
   }
 
+  obterPorId(id: number){
+    return this.http.get<Permissao>(`${this.apiUrl}/${id}`);
+  }
+
   salvar(permissao: Permissao) : Observable<Permissao>{
     return this.http.post<Permissao>(this.apiUrl, permissao);
   }
 
   excluir(id: number) : Observable<void>{
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+
+  atualizar(permissao: Permissao){
+    return this.http.put<Permissao>(`${this.apiUrl}/${permissao.id}`, permissao);
   }
 
 }
