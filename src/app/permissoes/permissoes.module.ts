@@ -3,15 +3,19 @@ import { CommonModule } from '@angular/common';
 
 import { PermissoesRoutingModule } from './permissoes-routing.module';
 import { ConsultaComponent } from './consulta/consulta.component';
+import { CadastroComponent } from './cadastro/cadastro.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
-    ConsultaComponent
+    ConsultaComponent,
+    CadastroComponent
   ],
   imports: [
     CommonModule,
-    PermissoesRoutingModule
+    PermissoesRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class PermissoesModule { }

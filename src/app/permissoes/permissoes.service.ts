@@ -24,4 +24,12 @@ export class PermissoesService {
     );
   }
 
+  salvar(permissao: Permissao) : Observable<Permissao>{
+    return this.http.post<Permissao>(this.apiUrl, permissao);
+  }
+
+  excluir(id: number) : Observable<void>{
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+
 }

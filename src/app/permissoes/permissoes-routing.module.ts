@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { permissionGuard } from '../auth/permission.guard';
 import { PERMISSOES } from '../models/permissoes';
 import { ConsultaComponent } from './consulta/consulta.component';
+import { CadastroComponent } from './cadastro/cadastro.component';
 
 const routes: Routes = [
   {
@@ -11,9 +12,16 @@ const routes: Routes = [
     canActivate: [permissionGuard],
     data: {
       permissao: PERMISSOES.PERMISSAO_VISUALIZAR
-    }
+    },
+  },
+  {
+    path: 'cadastro',
+    component: CadastroComponent,
+    canActivate: [permissionGuard],
+     data: {
+        permissao: PERMISSOES.PERMISSAO_CRIAR
+      }
   }
-
 ];
 
 @NgModule({
