@@ -1,7 +1,7 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Role } from '../models/roles';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { RoleResponse } from '../dto/roles/role-response';
 import { Pagina } from '../models/pagina';
 
@@ -16,7 +16,11 @@ export class RoleService {
   private readonly apiUrl = 'http://localhost:8080/roles';
 
   obterTodos() : Observable<Role[]>{
-    return this.http.get<Role[]>(this.apiUrl);
+    return this.http.get<Pagina<Role>>(
+      `${this.apiUrl}?page=0$size=100`
+    ).pipe(
+      map(response => response.content)
+    );
   }
 
   obterPorId(id: number) : Observable<RoleResponse>{

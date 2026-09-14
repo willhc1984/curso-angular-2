@@ -15,7 +15,7 @@ export class ConsultaComponent implements OnInit{
 
   usuarios: Usuario[] = [];
   paginaAtual: number = 1;
-  itensPorPagina: number = 3;
+  itensPorPagina: number = 1;
   totalPaginas: number = 0;
 
   constructor(private usuarioService: UsuariosService, private alerta: AlertaService, public authService: AuthService){}
@@ -25,17 +25,11 @@ export class ConsultaComponent implements OnInit{
   }
 
   carregarUsuarioPaginacao() : void {
-    this.usuarioService.obterPaginacao(this.paginaAtual, this.itensPorPagina)
+    this.usuarioService.obterPaginacao(this.paginaAtual -1, this.itensPorPagina)
       .subscribe({
         next: response => {
-          this.usuarios = response.body ?? [];
-          const totalRegistros = Number(
-            response.headers.get('X-Total-Count')
-          );
-
-          this.totalPaginas = Math.ceil(
-            totalRegistros / this.itensPorPagina
-          )
+          this.usuarios = response.content;
+          this.totalPaginas = response.totalPages
         }
       });
   }

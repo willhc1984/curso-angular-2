@@ -3,6 +3,7 @@ import { Usuario } from '../models/usuario';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../api/environment';
+import { Pagina } from '../models/pagina';
 
 
 @Injectable({
@@ -19,12 +20,9 @@ export class UsuariosService {
     return this.http.post<Usuario>(this.apiUrl, usuario);
   }
 
-  obterPaginacao(pagina: number, itensPorPagina: number) : Observable<HttpResponse<Usuario[]>> {
-    return this.http.get<Usuario[]>(
-      `${this.apiUrl}?_page=${pagina}&_limit=${itensPorPagina}`,
-      {
-        observe: 'response'
-      }
+  obterPaginacao(pagina: number, itensPorPagina: number) : Observable<Pagina<Usuario>> {
+    return this.http.get<Pagina<Usuario>>(
+      `${this.apiUrl}?page=${pagina}&size=${itensPorPagina}`,
     )
   }
 
