@@ -15,7 +15,7 @@ export class ConsultaComponent implements OnInit {
 
   roles: Role[] = [];
   paginaAtual: number = 1;
-  itensPorPagina: number = 10;
+  itensPorPagina: number = 2;
   totalPaginas: number = 0;
 
   constructor(private roleService: RoleService, private alerta: AlertaService, public authService: AuthService){}
@@ -25,17 +25,11 @@ export class ConsultaComponent implements OnInit {
   }
 
   carregarRolesPaginacao() : void {
-    this.roleService.obterTodosPaginacao(this.paginaAtual, this.itensPorPagina)
+    this.roleService.obterTodosPaginacao(this.paginaAtual -1, this.itensPorPagina)
       .subscribe({
         next: response => {
-          this.roles = response.body ?? [];
-          const totalRegistros = Number(
-            response.headers.get('X-Total-Count')
-          );
-
-          this.totalPaginas = Math.ceil(
-            totalRegistros / this.itensPorPagina
-          )
+          this.roles = response.content
+          this.totalPaginas = response.totalPages;
         }
     });
   }

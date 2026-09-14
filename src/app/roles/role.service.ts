@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Role } from '../models/roles';
 import { Observable } from 'rxjs';
 import { RoleResponse } from '../dto/roles/role-response';
+import { Pagina } from '../models/pagina';
 
 @Injectable({
   providedIn: 'root'
@@ -22,12 +23,9 @@ export class RoleService {
     return this.http.get<RoleResponse>(`${this.apiUrl}/${id}`);
   }  
 
-  obterTodosPaginacao(pagina: number, itensPorPagina: number) : Observable<HttpResponse<Role[]>>{
-    return this.http.get<Role[]>(
-      `${this.apiUrl}?_page=${pagina}&_limit=${itensPorPagina}`,
-      {
-        observe: 'response'
-      }
+  obterTodosPaginacao(pagina: number, itensPorPagina: number) : Observable<Pagina<Role>>{
+    return this.http.get<Pagina<Role>>(
+      `${this.apiUrl}?page=${pagina}&size=${itensPorPagina}`
     );
   }
 

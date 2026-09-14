@@ -1,6 +1,6 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Permissao } from '../models/permissions';
 import { Pagina } from '../models/pagina';
 
@@ -15,7 +15,12 @@ export class PermissoesService {
   private readonly apiUrl = 'http://localhost:8080/permissions';
 
   obterTodas() : Observable<Permissao[]> {
-    return this.http.get<Permissao[]>(this.apiUrl);
+    return this.http.get<Pagina<Permissao>>(
+      `${this.apiUrl}?page=0&size=100`
+    )
+    .pipe(
+      map(response => response.content)
+    );
   }
 
   obterTodasPaginacao(pagina: number, itensPagina: number) : Observable<Pagina<Permissao>> {
