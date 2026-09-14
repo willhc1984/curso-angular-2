@@ -3,6 +3,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Categoria } from '../models/categoria';
 import { Observable } from 'rxjs';
 import { environment } from '../../../api/environment';
+import { Pagina } from '../models/pagina';
 
 @Injectable({
   providedIn: 'root'
@@ -22,12 +23,9 @@ export class CategoriaService {
     return this.http.get<Categoria[]>(this.apiUrl);
   }
 
-  obterPaginacao(pagina: number, itensPorPagina: number) : Observable<HttpResponse<Categoria[]>> {
-    return this.http.get<Categoria[]>(
-      `${this.apiUrl}?_page=${pagina}&_limit=${itensPorPagina}`,
-      {
-        observe: 'response'
-      }
+  obterPaginacao(pagina: number, itensPorPagina: number) : Observable<Pagina<Categoria>> {
+    return this.http.get<Pagina<Categoria>>(
+      `${this.apiUrl}?page=${pagina}&size=${itensPorPagina}`
     );
   }
 

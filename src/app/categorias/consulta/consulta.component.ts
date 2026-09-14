@@ -17,7 +17,7 @@ export class ConsultaComponent implements OnInit{
 
   categorias: Categoria[] = [];
   paginaAtual: number = 1;
-  itensPorPagina: number = 4;
+  itensPorPagina: number = 1;
   totalPaginas: number = 0;
 
   constructor(
@@ -32,17 +32,11 @@ export class ConsultaComponent implements OnInit{
 
   carregarCategoriasPaginacao() : void {
     this.categoriaService
-      .obterPaginacao(this.paginaAtual, this.itensPorPagina)
+      .obterPaginacao(this.paginaAtual -1, this.itensPorPagina)
       .subscribe({
         next: response => {
-          this.categorias = response.body ?? [];
-          const totalRegistros = Number(
-            response.headers.get('X-Total-Count')
-          );
-
-          this.totalPaginas = Math.ceil(
-            totalRegistros / this.itensPorPagina
-          )
+          this.categorias = response.content;
+          this.totalPaginas = response.totalPages
       }
     });
   }
