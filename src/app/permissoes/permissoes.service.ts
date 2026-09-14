@@ -2,6 +2,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Permissao } from '../models/permissions';
+import { Pagina } from '../models/pagina';
 
 @Injectable({
   providedIn: 'root'
@@ -17,10 +18,9 @@ export class PermissoesService {
     return this.http.get<Permissao[]>(this.apiUrl);
   }
 
-  obterTodasPaginacao(pagina: number, itensPagina: number) : Observable<HttpResponse<Permissao[]>> {
-    return this.http.get<Permissao[]>(
-      `${this.apiUrl}?page=${pagina}&size=${itensPagina}`,
-      { observe: 'response'}
+  obterTodasPaginacao(pagina: number, itensPagina: number) : Observable<Pagina<Permissao>> {
+    return this.http.get<Pagina<Permissao>>(
+      `${this.apiUrl}?page=${pagina}&size=${itensPagina}`
     );
   }
 

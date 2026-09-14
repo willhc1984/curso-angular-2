@@ -18,7 +18,7 @@ export class ConsultaComponent implements OnInit{
 
   permissoes: Permissao[] = [];
   paginaAtual: number = 1;
-  itensPorPagina: number = 5;
+  itensPorPagina: number = 4;
   totalPaginas: number = 0;
 
   constructor(
@@ -32,14 +32,11 @@ export class ConsultaComponent implements OnInit{
   }
 
   carregarPermissoesPaginacao() : void {
-    this.permissoesService.obterTodasPaginacao(this.paginaAtual, this.itensPorPagina)
+    this.permissoesService.obterTodasPaginacao(this.paginaAtual -1, this.itensPorPagina)
       .subscribe({
         next: response => {
-          this.permissoes = response.body ?? [];
-          const totalRegistros = Number(
-            response.headers.get('X-Total-Count')
-          );
-          this.totalPaginas = Math.ceil(totalRegistros / this.itensPorPagina);
+          this.permissoes = response.content;
+          this.totalPaginas = response.totalPages;
         }
       });
   }
@@ -70,5 +67,18 @@ export class ConsultaComponent implements OnInit{
       })
   }
 
+  proximaPagina() : void{
+    if(this.paginaAtual < this.totalPaginas){
+      this.paginaAtual++;
+      this.carregarPermissoesPaginacao();
+    }
+  }
+
+  paginaAnterior() : void {
+    if(this.paginaAtual > 1){
+      this.paginaAtual--;
+      this.carregarPermissoesPaginacao();
+    }
+  }
 
 }

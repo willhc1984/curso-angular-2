@@ -35,6 +35,61 @@ export class CadastroComponent implements OnInit{
     this.carregarPermissoes();
   };
 
+  //Carrega permissões em salvar
+  carregarPermissoes(): void {
+    this.permissoesService.obterTodas().subscribe({
+      next: permissoes => {
+        this.permissoes = permissoes;
+
+        const formArray = this.camposForm.get('permissoes') as FormArray;
+
+        this.permissoes.forEach(() => {
+          formArray.push(new FormControl(false));
+        })
+
+        if(this.id){
+          this.carregarRoleId(this.id);
+        }
+      },
+      error: erro => {
+        console.log('Erro ao carregar permissões: ', erro);
+        this.alerta.erro('Erro ao carregar permissões.');
+      }
+    });
+  }
+
+  carregarRoleId(id: number) : void {
+    this.roleService.obterPorId(id).subscribe({
+      next: role => {
+        this.camposForm.patchValue({
+          nome: role.nome,
+          descricao: role.descricao
+        });
+
+        const formArray = this.camposForm.get('permissoes') as FormArray;
+
+        this.permissoes.forEach((permissao, index) => {
+          const selecionada = role.permissoes.some(
+            p => p.id === permissao.id
+          );
+
+          formArray.at(index).setValue(selecionada);
+        });
+
+        console.log(role);
+      }
+    })
+  }
+
+  //Busca permissões selecionadas antes de salvar
+  buscaPermissoes(): number[]{
+    const formArray = this.camposForm.get('permissoes') as FormArray;
+
+    return this.permissoes
+      .filter((_, index) => formArray.at(index).value)
+      .map(permissao => permissao.id);
+  }
+
   salvar(): void{
     this.camposForm.markAllAsTouched();
     
@@ -77,60 +132,6 @@ export class CadastroComponent implements OnInit{
         this.router.navigate(['/paginas/papeis/consulta']);
       }
     });
-  }
-
-  carregarRoleId(id: number) : void {
-    this.roleService.obterPorId(id).subscribe({
-      next: role => {
-        this.camposForm.patchValue({
-          nome: role.nome,
-          descricao: role.descricao
-        });
-
-        const formArray = this.camposForm.get('permissoes') as FormArray;
-
-        this.permissoes.forEach((permissao, index) => {
-          const selecionada = role.permissoes.some(
-            p => p.id === permissao.id
-          );
-
-          formArray.at(index).setValue(selecionada);
-        });
-
-        console.log(role);
-      }
-    })
-  }
-
-  //Carrega permissões em salvar
-  carregarPermissoes(): void {
-    this.permissoesService.obterTodas().subscribe({
-      next: permissoes => {
-        this.permissoes = permissoes;
-        const formArray = this.camposForm.get('permissoes') as FormArray;
-
-        this.permissoes.forEach(() => {
-          formArray.push(new FormControl(false));
-        })
-
-        if(this.id){
-          this.carregarRoleId(this.id);
-        }
-      },
-      error: erro => {
-        console.log('Erro ao carregar permissões: ', erro);
-        this.alerta.erro('Erro ao carregar permissões.');
-      }
-    });
-  }
-
-  //Busca permissões selecionadas antes de salvar
-  buscaPermissoes(): number[]{
-    const formArray = this.camposForm.get('permissoes') as FormArray;
-
-    return this.permissoes
-      .filter((_, index) => formArray.at(index).value)
-      .map(permissao => permissao.id);
   }
 
   isCampoInvalido(nomeCampo: string): boolean {
