@@ -36,17 +36,11 @@ export class ConsultaComponent implements OnInit{
 
   carregarLugares() : void {
     this.lugarService
-      .obterTodos(this.paginaAtual, this.itensPorPagina)
+      .obterTodosPaginacao(this.paginaAtual -1, this.itensPorPagina)
       .subscribe({
         next: response => {
-          this.lugares = response.body ?? [];
-          const totalRegistros = Number(
-            response.headers.get('X-Total-Count')
-          );
-
-          this.totalPaginas = Math.ceil(
-            totalRegistros / this.itensPorPagina
-          )
+          this.lugares = response.content;
+          this.totalPaginas = response.totalPages;
         }
     });
   }

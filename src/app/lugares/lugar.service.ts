@@ -3,6 +3,7 @@ import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Lugar } from '../models/lugar';
 import { environment } from '../../../api/environment';
+import { Pagina } from '../models/pagina';
 
 @Injectable({
   providedIn: 'root'
@@ -18,12 +19,9 @@ export class LugarService {
     return this.http.post<Lugar>(this.apiUrl, lugar);
   }
 
-  obterTodos(pagina: number, itensPorPagina: number) : Observable<HttpResponse<Lugar[]>> {
-    return this.http.get<Lugar[]>(
-      `${this.apiUrl}?_page=${pagina}&_limit=${itensPorPagina}`,
-      {
-        observe: 'response'
-      }
+  obterTodosPaginacao(pagina: number, itensPorPagina: number) : Observable<Pagina<Lugar>> {
+    return this.http.get<Pagina<Lugar>>(
+      `${this.apiUrl}?page=${pagina}&size=${itensPorPagina}`
     );
   }
 

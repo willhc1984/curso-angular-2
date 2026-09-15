@@ -25,32 +25,22 @@ export class GaleriaComponent implements OnInit{
 
   ngOnInit(): void {
     this.carregarLugares();
-    this.categoriaService.obterTodas()
-      .subscribe(categorias => { this.categoriasFiltro = categorias; });
+    // this.categoriaService.obterTodas()
+    //   .subscribe(categorias => { this.categoriasFiltro = categorias; });
     // this.lugarService.obterTodos(this.paginaAtual, this.itensPorPagina)
     //   .subscribe(lugares => {this.lugares = lugares; console.log(this.lugares); });
   }
 
   carregarLugares() : void {
     this.lugarService
-      .obterTodos(this.paginaAtual, this.itensPorPagina)
+      .obterTodosPaginacao(this.paginaAtual -1, this.itensPorPagina)
       .subscribe({
         next: response => {
-          this.lugares = response.body ?? [];
-          const totalRegistros = Number(
-            response.headers.get('X-Total-Count')
-          );
-
-          this.totalPaginas = Math.ceil(
-            totalRegistros / this.itensPorPagina
-          )
-          // console.log(response.body);
-          // console.log(response.headers);
-          // console.log(response.status);
-          // console.log(response.url);
-        }
-    });
-  }
+          this.lugares = response.content;
+          this.totalPaginas = response.totalPages;
+       }
+     })
+  };
 
   buscarNomeCategoria(categoriaId: number){
     const categoria = this.categoriasFiltro.find(
