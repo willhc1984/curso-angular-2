@@ -18,7 +18,7 @@ export class GaleriaComponent implements OnInit{
   nomeFiltro: string = '';
   categoriaFiltro: string = '';
   paginaAtual: number = 1;
-  itensPorPagina: number = 6;
+  itensPorPagina: number = 5;
   totalPaginas: number = 0;
 
   constructor(private lugarService: LugarService, private categoriaService: CategoriaService){}

@@ -29,7 +29,8 @@ export class ConsultaComponent implements OnInit{
     this.categoriaService.obterTodas().subscribe({
       next: (listaCategorias) => {
         this.categorias = listaCategorias,
-        console.log(this.categorias)
+        console.log(this.categorias),
+        console.log('É array? ', Array.isArray(listaCategorias))
       }      
     })
   }
